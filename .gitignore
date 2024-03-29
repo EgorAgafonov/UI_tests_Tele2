@@ -7,5 +7,5 @@ __pycache__
 .idea
 *.idea*
 *.pyc
-/screens/test_current_geoloc_btn_click.png
-/tests/allure_results/
+
+
