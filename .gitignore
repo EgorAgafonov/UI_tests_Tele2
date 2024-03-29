@@ -1,0 +1,11 @@
+/.env
+/venv/
+/my_cookies.txt
+/my_cookies.pkl
+__pycache__
+*__pycache__*
+.idea
+*.idea*
+*.pyc
+/screens/test_current_geoloc_btn_click.png
+/tests/allure_results/
