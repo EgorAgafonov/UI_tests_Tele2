@@ -12,7 +12,5 @@ class Test_Tele2_Positive_Auth_Off:
     """Класс с коллекцией positive UI-тестов функционального тестирования веб-сайта оператора "Tele2 в режиме
     неавторизованного пользователя."""
 
-    def test_about_us(self, driver_no_auth):
-        page = MainPage(driver_no_auth)
-        page.wait_page_loaded()
-        time.sleep(10)
+    def test_about_us(self, driver_auth):
+        page = MainPage(driver_auth)

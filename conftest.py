@@ -5,6 +5,7 @@ from selenium import webdriver
 import os
 from dotenv import load_dotenv
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
 load_dotenv()
@@ -44,16 +45,22 @@ def driver_auth():
     ВАЖНО: ДАННАЯ ФИКСТУРА ПРЕДВАРИТЕЛЬНО АВТОРИЗУЕТ ПОЛЬЗОВАТЕЛЯ НА САЙТЕ, НЕОБХОДИМА ДЛЯ ТЕСТИРОВАНИЯ ИНТЕРФЕЙСА В
     РЕЖИМЕ АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ !!!"""
 
-    with allure.step("SETUP 1/3: Определить драйвер и настройки Chrome"):
+    with allure.step("SETUP 1/3: Определение драйвера и настроек Chrome"):
         options = Options()
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
-    with allure.step("SETUP 2/3: Перейти на страницу https://msk.tele2.ru/"):
+    with allure.step("SETUP 2/3: Переход на страницу https://msk.tele2.ru/"):
         url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
         driver.get(url)
-    with allure.step("SETUP 3/3: Перейти на страницу https://msk.tele2.ru/"):
+    with allure.step("SETUP 3/3: Авторизация пользователя (cookie) на сайте и проверка входа"):
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         driver.add_cookie({"name": "access_token", "value": cookie_value})
+        page = BasePage(driver, url)
+        page.wait_page_loaded()
+        logged_user_phone = driver.find_element(By.CSS_SELECTOR, "span[class='br']").text
+        expected_user_phone = os.getenv("AUTH_USER")
+        assert logged_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность данных "
+                                                          "пользователя.")
         yield driver
     with allure.step("TEAR DOWN: Закрыть браузер Chrome"):
         driver.quit()
