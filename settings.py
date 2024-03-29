@@ -2,9 +2,6 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-email = os.getenv('email')
-password = os.getenv('pass')
-invalid_email = os.getenv('invalid_email')
-invalid_password = os.getenv('invalid_pass')
-
+access_token = os.getenv("ACCESS_TOKEN")
+session_cookie = os.getenv("SESSION_COOKIE")
 screenshots_folder = os.path.abspath("C:\\Users\\agafo\\PycharmProjects")
