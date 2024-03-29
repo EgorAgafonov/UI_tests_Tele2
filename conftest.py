@@ -2,37 +2,58 @@ import allure
 import pytest
 from selenium.webdriver.chrome.options import *
 from selenium import webdriver
-from datetime import *
-from colorama import Fore, Style, Back
 import os
+from dotenv import load_dotenv
+from selenium.webdriver.common.by import By
 
 
-@pytest.fixture(scope='function')
-def duration_of_test(request):
-    start_time = datetime.now()
-    print(f'\n1/3) Начало выполнения тестовой функции: {start_time} сек.')
-    yield
-    end_time = datetime.now()
-    print(f'\n2/3) Окончание выполнения тестовой функции: {end_time} сек.')
-    print(Fore.BLACK + Style.BRIGHT + Back.YELLOW + f"3/3) ВСЕГО продолжительность теста {request.function.__name__}: "
-                                                    f"{end_time - start_time} сек.")
+load_dotenv()
+cookie_value = os.getenv("COOKIES")
 
 
 @pytest.fixture(scope='session')
-def driver():
+def driver_no_auth():
     """Pytest-фикстура(декоратор) для выполнения UI-тестов, спроектированных с помощью паттерна PageObjectModel и
-    фреймворка Selenium в рамках тестирования платформы "Yandex Карты". Определяет setup-настройки перед началом
-    выполнения тестовой функции, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
-    коллекции как объект класса webdriver фреймворка Selenium."""
+    фреймворка Selenium в рамках тестирования платформы "Tele2". Определяет setup-настройки перед началом
+    выполнения тестовой сессии, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
+    коллекции как объект класса webdriver Selenium.
+
+    ВАЖНО: ДАННАЯ ФИКСТУРА ПРЕДВАРИТЕЛЬНО НЕ АВТОРИЗУЕТ ПОЛЬЗОВАТЕЛЯ НА САЙТЕ, НЕОБХОДИМА ДЛЯ ТЕСТИРОВАНИЯ ИНТЕРФЕЙСА В
+    РЕЖИМЕ НЕАВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ !!!"""
 
     with allure.step("SETUP 1/2: Определить драйвер и настройки Chrome"):
         options = Options()
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
-    with allure.step("SETUP 2/2: Перейти на страницу https://yandex.ru/maps/"):
-        url = os.getenv("MAIN_URL") or "https://yandex.ru/maps/"
+    with allure.step("SETUP 2/2: Перейти на страницу https://msk.tele2.ru/"):
+        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
         driver.get(url)
+        driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         yield driver
     with allure.step("TEAR DOWN: Закрыть браузер Chrome"):
         driver.quit()
 
+
+@pytest.fixture(scope='session')
+def driver_auth():
+    """Pytest-фикстура(декоратор) для выполнения UI-тестов, спроектированных с помощью паттерна PageObjectModel и
+    фреймворка Selenium в рамках тестирования платформы "Tele2". Определяет setup-настройки перед началом
+    выполнения тестовой сессии, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
+    коллекции как объект класса webdriver Selenium.
+
+    ВАЖНО: ДАННАЯ ФИКСТУРА ПРЕДВАРИТЕЛЬНО АВТОРИЗУЕТ ПОЛЬЗОВАТЕЛЯ НА САЙТЕ, НЕОБХОДИМА ДЛЯ ТЕСТИРОВАНИЯ ИНТЕРФЕЙСА В
+    РЕЖИМЕ АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ !!!"""
+
+    with allure.step("SETUP 1/3: Определить драйвер и настройки Chrome"):
+        options = Options()
+        options.add_argument("--start-maximized")
+        driver = webdriver.Chrome(options=options)
+    with allure.step("SETUP 2/3: Перейти на страницу https://msk.tele2.ru/"):
+        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
+        driver.get(url)
+    with allure.step("SETUP 3/3: Перейти на страницу https://msk.tele2.ru/"):
+        driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
+        driver.add_cookie({"name": "access_token", "value": cookie_value})
+        yield driver
+    with allure.step("TEAR DOWN: Закрыть браузер Chrome"):
+        driver.quit()
