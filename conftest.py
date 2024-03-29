@@ -52,7 +52,7 @@ def driver_auth():
     with allure.step("SETUP 2/3: Переход на страницу https://msk.tele2.ru/"):
         url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
         driver.get(url)
-    with allure.step("SETUP 3/3: Авторизация пользователя (cookie) на сайте и проверка входа"):
+    with allure.step("SETUP 3/3: Авторизация и проверка пользователя на сайте"):
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         driver.add_cookie({"name": "access_token", "value": cookie_value})
         page = BasePage(driver, url)
@@ -62,5 +62,5 @@ def driver_auth():
         assert logged_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность данных "
                                                           "пользователя.")
         yield driver
-    with allure.step("TEAR DOWN: Закрыть браузер Chrome"):
+    with allure.step("TEAR DOWN 1/1: Закрыть браузер Chrome"):
         driver.quit()
