@@ -12,7 +12,7 @@ from settings import access_token, session_cookie
 
 
 @pytest.fixture(scope='session')
-def driver_no_auth():
+def driver():
     """Pytest-фикстура(декоратор) для выполнения UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium в рамках тестирования платформы "Tele2". Определяет setup-настройки перед началом
     выполнения тестовой сессии, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
@@ -25,9 +25,10 @@ def driver_no_auth():
         options = Options()
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
-    with allure.step("SETUP 2/2: Перейти на страницу https://msk.tele2.ru/"):
+    with allure.step("SETUP 2/2: Перейти на страницу https://msk.tele2.ru"):
         url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
         driver.get(url)
+        driver.implicitly_wait(5)
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         yield driver
     with allure.step("TEAR DOWN: Закрыть браузер Chrome"):

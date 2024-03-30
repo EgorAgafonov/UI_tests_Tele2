@@ -14,13 +14,19 @@ class HomePage(BasePage):
     def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
 
-        self.private_clients_btn = driver.find_element(*HomePageLocators.PRIVATE_CLIENTS_BTN)
+    @staticmethod
+    def private_clients_btn_click(driver):
+        """Метод для клика на элементе 'Частным лицам' в главном меню навигации сайта."""
 
-    def private_clients_btn_click(self):
-        """"""
+        private_clients_btn = driver.find_element(*HomePageLocators.PRIVATE_CLIENTS_BTN)
+        private_clients_btn.click()
 
-        self.private_clients_btn.click()
+    @staticmethod
+    def for_business_btn_click(driver):
+        """Метод для клика на элементе 'Бизнесу>' в главном меню навигации сайта."""
 
+        private_clients_btn = driver.find_element(*HomePageLocators.FOR_BUSINESS_BTN)
+        private_clients_btn.click()
 
     # def enter_searching_address(self, driver, value: str):
     #     """Поиск топонима на веб-платформе Яндекс.Карты. Передает в поле поиска название(адрес) искомого объекта и
