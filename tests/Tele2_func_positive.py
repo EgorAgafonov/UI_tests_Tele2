@@ -17,9 +17,10 @@ class TestTele2_Functional_Auth_OFF_Positive:
         страницу с path='/home'."""
 
         page = HomePage(driver)
-        page.wait_page_loaded()
         url_before = page.get_relative_link()
         page.private_clients_btn_click(driver)
+        page.wait_page_loaded()
+        page.checking_for_a_popup_menu(driver)
         url_after = page.get_relative_link()
 
         assert url_before != url_after
@@ -29,9 +30,10 @@ class TestTele2_Functional_Auth_OFF_Positive:
         страницу с path='/business'."""
 
         page = HomePage(driver)
-        page.wait_page_loaded()
         url_before = page.get_relative_link()
         page.for_business_btn_click(driver)
+        page.wait_page_loaded()
+        page.checking_for_a_popup_menu(driver)
         url_after = page.get_relative_link()
 
         assert url_before != url_after

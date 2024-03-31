@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionBuilder
 from selenium.webdriver import Keys
 from pages.base_page import BasePage
 from pages.locators import HomePageLocators
+from selenium.common.exceptions import *
 from tkinter import *
 
 
@@ -27,6 +28,17 @@ class HomePage(BasePage):
 
         private_clients_btn = driver.find_element(*HomePageLocators.FOR_BUSINESS_BTN)
         private_clients_btn.click()
+
+    @staticmethod
+    def checking_for_a_popup_menu(driver):
+        """ Метод для проверки наличия на экране pop-up меню """
+
+        try:
+            not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
+        except WebDriverException:
+            pass
+        else:
+            not_now_btn.click()
 
     # def enter_searching_address(self, driver, value: str):
     #     """Поиск топонима на веб-платформе Яндекс.Карты. Передает в поле поиска название(адрес) искомого объекта и
