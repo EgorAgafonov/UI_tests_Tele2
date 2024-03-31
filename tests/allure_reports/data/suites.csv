@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Mar 31 17:04:39 MSK 2024","Sun Mar 31 17:04:52 MSK 2024","13382","tests","Tele2_func_positive","TestTele2_Functional_Auth_OFF_Positive","","","Нажать на элемент 'Частным лицам'","Тест работы элемента 'Частным лицам' в главном меню навигации сайта. Ожидаемый результат - переход на
+        страницу с path='/home'."
+"passed","Sun Mar 31 17:04:52 MSK 2024","Sun Mar 31 17:05:01 MSK 2024","8536","tests","Tele2_func_positive","TestTele2_Functional_Auth_OFF_Positive","","","Нажать на элемент 'Бизнесу'","Тест работы элемента 'Бизнесу' в главном меню навигации сайта. Ожидаемый результат - переход на
+        страницу с path='/business'."

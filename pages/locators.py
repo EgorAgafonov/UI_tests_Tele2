@@ -8,5 +8,4 @@ class HomePageLocators:
                                      '1]/div/div/div/div/header/section[1]/ul/li[1]/a')
     FOR_BUSINESS_BTN = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                   '1]/div/div/div/div/header/section[1]/ul/li[2]/a')
-    # POPMECHANIC_POPUP_MENU = (By.CSS_SELECTOR, 'div[id="popmechanic-form-81995"]')
     POPMECHANIC_SUBMIT_BTN = (By.CSS_SELECTOR, 'button[class="popmechanic-submit popmechanic-submit-close"]')
