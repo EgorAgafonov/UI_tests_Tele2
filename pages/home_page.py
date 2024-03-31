@@ -36,6 +36,7 @@ class HomePage(BasePage):
         момент тестирования - тестовая функция выполняется в установленном режиме."""
 
         try:
+            time.sleep(3)
             not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
         except WebDriverException:
             pass
