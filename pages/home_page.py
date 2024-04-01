@@ -10,7 +10,7 @@ from tkinter import *
 
 
 class HomePage(BasePage):
-    """"""
+    """Класс с методами для взаимодействия с элементами страницы URL path=/home"""
 
     def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
@@ -20,13 +20,6 @@ class HomePage(BasePage):
         """Метод для клика на элементе 'Частным лицам' в главном меню навигации по сайту."""
 
         private_clients_btn = driver.find_element(*HomePageLocators.PRIVATE_CLIENTS_BTN)
-        private_clients_btn.click()
-
-    @staticmethod
-    def for_business_btn_click(driver):
-        """Метод для клика на элементе 'Бизнесу>' в главном меню навигации по сайту."""
-
-        private_clients_btn = driver.find_element(*HomePageLocators.FOR_BUSINESS_BTN)
         private_clients_btn.click()
 
     @staticmethod
