@@ -20,7 +20,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
 
     @pytest.mark.mainnavmenu_01
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Главное навигационное меню сайта")
+    @allure.story("Проверка навигационного меню сайта")
     @allure.title("Нажать на элемент 'Частным лицам'")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
@@ -36,3 +36,33 @@ class TestTele2_Functional_Auth_OFF_Positive:
         url_after = page.get_relative_link()
 
         assert url_before != url_after
+
+    @pytest.mark.more_details
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Проверка ссылок рекламного блока сайта")
+    @allure.title("Нажать на элемент 'Подробнее'")
+    @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
+    @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
+    def test_more_details_button_links(self, driver):
+        """Тест работы элемента 'Подробнее' на странице path='/home'. Валидация теста положительна, если при нажатии
+        элемента 'Подробнее' браузер открывает новую вкладку по URL = https://evolution.tele2.ru/#about c рекламным
+        блоком услуг Tele2. При воздействии на элемент 'Подключиться' система адресует пользователя на URl =
+        https://msk.tele2.ru/tariffs c действующими тарифами оператора связи."""
+
+    with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех элементов."):
+        page = HomePage(driver)
+        main_window = page.get_current_tab_ID_descriptor()
+        page.make_screenshot(file_path=screenshots_folder + "\\test_more_details_button_links.png")
+        allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_MAIN_WINDOW",
+                      attachment_type=allure.attachment_type.PNG)
+    with allure.step("Шаг 2: Нажать на элемент 'Подробнее' с лева от центра страницы"):
+
+        page.more_details_btn_click(driver)
+        page.
+        page.wait_page_loaded()
+
+
+
+            page.details_btn_click(driver)
+            page.wait_page_loaded()
+

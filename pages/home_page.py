@@ -16,13 +16,6 @@ class HomePage(BasePage):
         super().__init__(driver, timeout)
 
     @staticmethod
-    def private_clients_btn_click(driver):
-        """Метод для клика на элементе 'Частным лицам' в главном меню навигации по сайту."""
-
-        private_clients_btn = driver.find_element(*HomePageLocators.PRIVATE_CLIENTS_BTN)
-        private_clients_btn.click()
-
-    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в
@@ -35,6 +28,20 @@ class HomePage(BasePage):
             pass
         else:
             not_now_btn.click()
+
+    @staticmethod
+    def private_clients_btn_click(driver):
+        """Метод для клика на элементе 'Частным лицам' в главном меню навигации по сайту."""
+
+        private_clients_btn = driver.find_element(*HomePageLocators.PRIVATE_CLIENTS_BTN)
+        private_clients_btn.click()
+
+    @staticmethod
+    def more_details_btn_click(driver):
+        """"""
+
+        more_details_btn = driver.find_element(*HomePageLocators.TIZER_VIDEO_BTN)
+        more_details_btn.click()
 
 
 
