@@ -50,34 +50,39 @@ class TestTele2_Functional_Auth_OFF_Positive:
                          "элементов."):
             page = HomePage(driver)
             page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_HOME.png")
+            main_tab = page.get_current_tab_ID_descriptor()
+            current_path = page.get_relative_link()
             allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_/HOME",
                           attachment_type=allure.attachment_type.PNG)
-            main_tab = page.get_current_tab_ID_descriptor()
-        with allure.step("Шаг 2: Нажать на элемент 'Подробнее' с лева от центра страницы"):
+        with allure.step("Шаг 2: Нажать на элемент 'Подробнее'"):
             page.more_details_btn_click(driver)
             page.switch_to_new_browser_tab(starting_page=main_tab)
             page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_ABOUT.png")
             allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_/#ABOUT",
                           attachment_type=allure.attachment_type.PNG)
-        with allure.step("Шаг 4: Нажать на второй снизу дот(точку) белого цвета"):
+        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на белую точку(about) в левой части экрана"):
             page.about_dot_btn_click(driver)
-        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на дот(точку) розового цвета в левой части экрана"):
+        with allure.step("Шаг 4: Нажать на белую точку(mia)"):
             page.mia_dot_btn_click(driver)
-        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на дот(точку) розового цвета в левой части экрана"):
+        with allure.step("Шаг 5: Нажать на белую точку(benefits)"):
             page.benefits_dot_btn_click(driver)
+            second_path = page.get_relative_link()
         with allure.step("Шаг 5: Нажать на элемент 'Подключиться'"):
             page.connect_to_btn_click(driver)
-            page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_CONNECT_TO.png")
-            allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_CONNECT_TO",
-                          attachment_type=allure.attachment_type.PNG)
-        # with allure.step("Шаг 6: Выполнить проверку ожидаемого результата"):
-        #     assert starting_path != new_tab_path
-        #     assert tariffs_path == '/tariffs'
-
-
-
-
-
-
-
-
+            tariffs_path = page.get_relative_link()
+        with allure.step("Шаг 6: Выполнить проверку ожидаемого результата"):
+            if current_path != second_path:
+                assert tariffs_path == '/tariffs'
+                page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_EXPECTED_RES.png")
+                allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_EXPECTED_RES",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_current_browser_tab()
+                page.switch_back_to_main_tab(main_window_id=main_tab)
+            else:
+                print('Ошибка! Проверить работу ссылки элемента "Подключиться" на странице '
+                      'URL=https://evolution.tele2.ru/#about.')
+                page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_ACTUAL_RES.png")
+                allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_ACTUAL_RES",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_current_browser_tab()
+                page.switch_back_to_main_tab(main_window_id=main_tab)
