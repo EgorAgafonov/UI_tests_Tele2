@@ -43,7 +43,33 @@ class HomePage(BasePage):
         more_details_btn = driver.find_element(*HomePageLocators.TIZER_VIDEO_BTN)
         more_details_btn.click()
 
+    @staticmethod
+    def about_dot_btn_click(driver):
+        """"""
 
+        about_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_ABOUT)
+        about_dot_btn.click()
+
+    @staticmethod
+    def mia_dot_btn_click(driver):
+        """"""
+
+        mia_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_MIA)
+        mia_dot_btn.click()
+
+    @staticmethod
+    def benefits_dot_btn_click(driver):
+        """"""
+
+        benefits_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_BENEFITS)
+        benefits_dot_btn.click()
+
+    @staticmethod
+    def connect_to_btn_click(driver):
+        """"""
+
+        connect_to_btn = driver.find_element(*HomePageLocators.BENEFITS_CONNECT_BTN)
+        connect_to_btn.click()
 
     # def enter_searching_address(self, driver, value: str):
     #     """Поиск топонима на веб-платформе Яндекс.Карты. Передает в поле поиска название(адрес) искомого объекта и

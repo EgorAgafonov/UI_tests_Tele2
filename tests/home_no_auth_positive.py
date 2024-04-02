@@ -27,13 +27,12 @@ class TestTele2_Functional_Auth_OFF_Positive:
         страницу с path='/home'."""
 
         page = HomePage(driver)
-        url_before = page.get_relative_link()
         page.private_clients_btn_click(driver)
         page.wait_page_loaded()
         page.checking_for_a_popup_menu(driver)
-        url_after = page.get_relative_link()
+        current_url = page.get_relative_link()
 
-        assert url_before != url_after
+        assert current_url == '/home'
 
     @pytest.mark.more_details
     @allure.severity(allure.severity_level.CRITICAL)
@@ -50,18 +49,34 @@ class TestTele2_Functional_Auth_OFF_Positive:
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
                          "элементов."):
             page = HomePage(driver)
-            main_window = page.get_current_tab_ID_descriptor()
-            current_path = page.get_relative_link()
             page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_HOME.png")
             allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_/HOME",
                           attachment_type=allure.attachment_type.PNG)
+            main_tab = page.get_current_tab_ID_descriptor()
         with allure.step("Шаг 2: Нажать на элемент 'Подробнее' с лева от центра страницы"):
             page.more_details_btn_click(driver)
-            page.switch_to_new_browser_tab(starting_page=main_window)
-            page.wait_page_loaded()
+            page.switch_to_new_browser_tab(starting_page=main_tab)
             page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_ABOUT.png")
             allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_/#ABOUT",
                           attachment_type=allure.attachment_type.PNG)
+        with allure.step("Шаг 4: Нажать на второй снизу дот(точку) белого цвета"):
+            page.about_dot_btn_click(driver)
+        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на дот(точку) розового цвета в левой части экрана"):
+            page.mia_dot_btn_click(driver)
+        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на дот(точку) розового цвета в левой части экрана"):
+            page.benefits_dot_btn_click(driver)
+        with allure.step("Шаг 5: Нажать на элемент 'Подключиться'"):
+            page.connect_to_btn_click(driver)
+            page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_CONNECT_TO.png")
+            allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_CONNECT_TO",
+                          attachment_type=allure.attachment_type.PNG)
+        # with allure.step("Шаг 6: Выполнить проверку ожидаемого результата"):
+        #     assert starting_path != new_tab_path
+        #     assert tariffs_path == '/tariffs'
+
+
+
+
 
 
 

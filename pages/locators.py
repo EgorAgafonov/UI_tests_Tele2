@@ -8,6 +8,10 @@ class HomePageLocators:
     PRIVATE_CLIENTS_BTN = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                      '1]/div/div/div/div/header/section[1]/ul/li[1]/a')
     TIZER_VIDEO_BTN = (By.CSS_SELECTOR, 'span[class="btn tizer-video-announcement__link btn-white"]')
+    NAV_DOT_ABOUT = (By.CSS_SELECTOR, 'div[data-event="navigationDot_about"]')
+    NAV_DOT_MIA = (By.CSS_SELECTOR, 'div[data-event="navigationDot_mia"]')
+    NAV_DOT_BENEFITS = (By.CSS_SELECTOR, 'div[data-event="navigationDot_benefits"]')
+    BENEFITS_CONNECT_BTN = (By.CSS_SELECTOR, 'a[data-event="conv_connect-benefits"]')
 
 
 class ToBusinessPageLocators:

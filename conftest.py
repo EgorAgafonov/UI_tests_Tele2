@@ -23,7 +23,7 @@ def driver():
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
     with allure.step("SETUP 2/2: Перейти на страницу https://msk.tele2.ru"):
-        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
+        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru/home"
         driver.get(url)
         driver.implicitly_wait(5)
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
@@ -47,7 +47,7 @@ def driver_auth():
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
     with allure.step("SETUP 2/3: Переход на страницу https://msk.tele2.ru"):
-        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
+        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru/home"
         driver.get(url)
     with allure.step("SETUP 3/3: Авторизация и проверка пользователя на сайте"):
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
