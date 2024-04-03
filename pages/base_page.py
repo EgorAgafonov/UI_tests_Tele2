@@ -95,7 +95,8 @@ class BasePage(object):
             self.driver.execute_script('window.scrollTo(0, -document.body.scrollHeight);')
 
     def scroll_to_element(self, element: object):
-        """"""
+        """Спуск вниз по странице до указанного элемента DOM. Аргумент element принимает значение объекта класса
+        selenium.webdriver.common.by c методом .find_element."""
 
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 

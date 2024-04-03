@@ -19,18 +19,18 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @pytest.mark.private_persons
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка навигационного меню сайта")
-    @allure.title("Работа кнопки 'Частным лицам' на странице path=/home")
+    @allure.title("Работа кнопки 'Частным лицам' на странице path=/")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
-    @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
-    def test_private_persons_button_click(self, driver_auth):
+    @allure.link("https://msk.tele2.ru/", name="https://msk.tele2.ru/")
+    def test_private_persons_button_click(self, driver):
         """Тест работы элемента 'Частным лицам' в главном меню навигации сайта. Ожидаемый результат - переход на
         страницу с path='/home'."""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/home"):
-            page = HomePage(driver_auth)
+            page = HomePage(driver)
         with allure.step("Шаг 2: Нажать элемент 'Частным лицам' в главном меню навигации сайта."):
-            page.private_clients_btn_click(driver_auth)
-            page.checking_for_a_popup_menu(driver_auth)
+            page.private_clients_btn_click(driver)
+            page.checking_for_a_popup_menu(driver)
             current_url = page.get_relative_link()
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
             assert current_url == '/home'
@@ -43,7 +43,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка ссылок на ресурс https://evolution.tele2.ru/#about")
     @allure.title("Работа кнопки 'Подробнее' на странице path=/home")
-    @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
+    @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-MORE_DTLS")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
     def test_more_details_button_links(self, driver):
         """Тест работы элемента 'Подробнее' на странице path='/home'. Валидация теста успешна, если при нажатии
@@ -89,11 +89,11 @@ class TestTele2_Functional_Auth_OFF_Positive:
                 page.close_current_browser_tab()
                 page.switch_back_to_main_tab(main_window_id=main_tab)
 
-    @pytest.mark.tariff_black
+    @pytest.mark.tariff_price
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Проверка ссылок блока тарифов для частных лиц")
-    @allure.title("Работа кнопки 'Подробнее' на странице path=/home")
-    @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
+    @allure.story("Проверка калькулятора тарифов для частных лиц")
+    @allure.title("Расчет стоимости тарифа при покупке более одной sim-карты")
+    @allure.testcase("https://msk.tele2.ru/home", "TC-TELE2-TARRIFS_CALC")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
     def test_SIMs_quantity_price(self, driver):
         """Тест работы селектора выбора количества sim-карт на странице path='/home'. Валидация теста успешна,
