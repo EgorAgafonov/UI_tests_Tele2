@@ -104,3 +104,6 @@ class TestTele2_Functional_Auth_OFF_Positive:
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
                          "элементов."):
             page = HomePage(driver)
+            page.wait_page_loaded()
+            page.sims_quantity_selector_btns_click(driver)
+            time.sleep(2)
