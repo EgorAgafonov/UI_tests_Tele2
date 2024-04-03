@@ -38,38 +38,51 @@ class HomePage(BasePage):
 
     @staticmethod
     def more_details_btn_click(driver):
-        """"""
+        """Метод для клика на элементе 'Подробнее' на странице path=/home"""
 
         more_details_btn = driver.find_element(*HomePageLocators.TIZER_VIDEO_BTN)
         more_details_btn.click()
 
     @staticmethod
     def about_dot_btn_click(driver):
-        """"""
+        """Метод для клика на элементе 'navigationDot_about' на странице https://evolution.tele2.ru/#about"""
 
         about_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_ABOUT)
         about_dot_btn.click()
 
     @staticmethod
     def mia_dot_btn_click(driver):
-        """"""
+        """Метод для клика на элементе 'navigationDot_mia' на странице https://evolution.tele2.ru/#about"""
 
         mia_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_MIA)
         mia_dot_btn.click()
 
     @staticmethod
     def benefits_dot_btn_click(driver):
-        """"""
+        """Метод для клика на элементе 'navigationDot_benefits' на странице https://evolution.tele2.ru/#about"""
 
         benefits_dot_btn = driver.find_element(*HomePageLocators.NAV_DOT_BENEFITS)
         benefits_dot_btn.click()
 
     @staticmethod
     def connect_to_btn_click(driver):
-        """"""
+        """Метод для клика на элементе 'Подключиться' на странице https://evolution.tele2.ru/#about"""
 
         connect_to_btn = driver.find_element(*HomePageLocators.BENEFITS_CONNECT_BTN)
         connect_to_btn.click()
+
+    @staticmethod
+    def sims_quantity_selector_btns_click(driver):
+        """Метод для клика по элементам селектора 'Выберите тариф и количество SIM-карт' на странице path=/home.
+        Последовательно нажимает на кнопки 2,3,4,5."""
+
+        selector_buttons = driver.find_elements(*HomePageLocators.SIMS_QUANTITY_BTNS)
+
+        for button in selector_buttons:
+            ActionChains(driver).click(button).pause(1).perform()
+
+
+
 
     # def enter_searching_address(self, driver, value: str):
     #     """Поиск топонима на веб-платформе Яндекс.Карты. Передает в поле поиска название(адрес) искомого объекта и

@@ -12,6 +12,8 @@ class HomePageLocators:
     NAV_DOT_MIA = (By.CSS_SELECTOR, 'div[data-event="navigationDot_mia"]')
     NAV_DOT_BENEFITS = (By.CSS_SELECTOR, 'div[data-event="navigationDot_benefits"]')
     BENEFITS_CONNECT_BTN = (By.CSS_SELECTOR, 'a[data-event="conv_connect-benefits"]')
+    TARIFF_CARD_BLACK = (By.CSS_SELECTOR, 'a[href="/tariff/black"]')
+    SIMS_QUANTITY_BTNS = (By.CSS_SELECTOR, 'li[class="sim-number-selector__item"]')
 
 
 class ToBusinessPageLocators:
