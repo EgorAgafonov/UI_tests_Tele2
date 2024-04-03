@@ -22,16 +22,15 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.title("Работа кнопки 'Частным лицам' на странице path=/home")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
-    def test_private_persons_button_click(self, driver):
+    def test_private_persons_button_click(self, driver_auth):
         """Тест работы элемента 'Частным лицам' в главном меню навигации сайта. Ожидаемый результат - переход на
         страницу с path='/home'."""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/home"):
-            page = HomePage(driver)
-            page.wait_page_loaded()
+            page = HomePage(driver_auth)
         with allure.step("Шаг 2: Нажать элемент 'Частным лицам' в главном меню навигации сайта."):
-            page.private_clients_btn_click(driver)
-            page.checking_for_a_popup_menu(driver)
+            page.private_clients_btn_click(driver_auth)
+            page.checking_for_a_popup_menu(driver_auth)
             current_url = page.get_relative_link()
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
             assert current_url == '/home'
