@@ -15,7 +15,7 @@ class HomePage(BasePage):
     def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
 
-        self.choose_tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
+        self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
 
     @staticmethod
     def checking_for_a_popup_menu(driver):
@@ -82,6 +82,18 @@ class HomePage(BasePage):
 
         for button in selector_buttons:
             ActionChains(driver).click(button).pause(1).perform()
+
+    @staticmethod
+    def check_all_tariffs_prices(driver):
+        """Метод для получения(парсинга) информации о продолжительности маршрута(ов) на автомобиле, сформированного(ых)
+        системой. Формирует список расчетного времени по всем вариантам маршрутов. Необходим для валидации теста."""
+
+        prices = driver.find_elements(*HomePageLocators.TARIFFS_CURRENT_PRICES)
+        list_or_prices = []
+        for price in range(len(prices)):
+            price_value = prices[price].text
+            price_value.append(list_or_prices)
+        return list_or_prices
 
 
 

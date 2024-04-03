@@ -15,7 +15,7 @@ class HomePageLocators:
     TARIFF_CARD_BLACK = (By.CSS_SELECTOR, 'a[href="/tariff/black"]')
     SIMS_QUANTITY_BTNS = (By.CSS_SELECTOR, 'li[class="sim-number-selector__item"]')
     ELEMENT_HOME_LOCATOR = (By.CSS_SELECTOR, 'h1[class="left h1 tariff-cards-container__title space-holder27"]')
-    TARIFFS_CURRNT_PRICE = (By.CSS_SELECTOR, 'span[class="tariff-abonent-fee__current-price-value"]')
+    TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-abonent-fee__current-price-value"]')
 
 
 class ToBusinessPageLocators:

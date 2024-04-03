@@ -100,7 +100,7 @@ class BasePage(object):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def switch_to_iframe(self, iframe):
-        """ Фокусировка на элементе страницы по его имени."""
+        """ Фокусировка на iframe теге страницы по его имени."""
 
         self.driver.switch_to.frame(iframe)
 
