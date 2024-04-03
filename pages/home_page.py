@@ -85,14 +85,13 @@ class HomePage(BasePage):
 
     @staticmethod
     def check_all_tariffs_prices(driver):
-        """Метод для получения(парсинга) информации о продолжительности маршрута(ов) на автомобиле, сформированного(ых)
-        системой. Формирует список расчетного времени по всем вариантам маршрутов. Необходим для валидации теста."""
+        """Метод для получения(парсинга) информации о стоимости обслуживания на каждом тарифе Tele2."""
 
         prices = driver.find_elements(*HomePageLocators.TARIFFS_CURRENT_PRICES)
         list_or_prices = []
         for price in range(len(prices)):
             price_value = prices[price].text
-            price_value.append(list_or_prices)
+            list_or_prices.append(price_value)
         return list_or_prices
 
 

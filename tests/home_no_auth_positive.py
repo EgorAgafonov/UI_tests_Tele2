@@ -105,7 +105,10 @@ class TestTele2_Functional_Auth_OFF_Positive:
                          "элементов."):
             page = HomePage(driver)
             page.scroll_to_element(element=page.tariffs_text)
-        with allure.step("Шаг 2: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
-                         "элементов."):
-
+        with allure.step("Шаг 2: Последовательно нажать каждую кнопку селектора выбора количества sim-карт"):
+            prices_before = page.check_all_tariffs_prices(driver)
             page.sims_quantity_selector_btns_click(driver)
+            prices_after = page.check_all_tariffs_prices(driver)
+        with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
+            print(f'\n{prices_before}\n{prices_after}')
+            assert prices_before != prices_after
