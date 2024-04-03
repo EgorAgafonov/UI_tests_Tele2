@@ -94,6 +94,11 @@ class BasePage(object):
         else:
             self.driver.execute_script('window.scrollTo(0, -document.body.scrollHeight);')
 
+    def scroll_to_element(self, element: selenium.webdriver.common.by):
+        """"""
+
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
     def switch_to_iframe(self, iframe):
         """ Фокусировка на элементе страницы по его имени."""
 

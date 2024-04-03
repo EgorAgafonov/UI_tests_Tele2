@@ -15,6 +15,8 @@ class HomePage(BasePage):
     def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
 
+        self.choose_tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
+
     @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
@@ -22,7 +24,7 @@ class HomePage(BasePage):
         момент тестирования - тестовая функция выполняется в установленном режиме."""
 
         try:
-            time.sleep(3)
+            time.sleep(2)
             not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
         except WebDriverException:
             pass
@@ -80,6 +82,8 @@ class HomePage(BasePage):
 
         for button in selector_buttons:
             ActionChains(driver).click(button).pause(1).perform()
+
+
 
 
 
