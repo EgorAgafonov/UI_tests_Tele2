@@ -25,6 +25,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
     def test_private_persons_button_click(self, driver):
         """Тест работы элемента 'Частным лицам' в главном меню навигации сайта. Ожидаемый результат - переход на
         страницу с path='/home'."""
+
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/home"):
             page = HomePage(driver)
             page.wait_page_loaded()
@@ -46,7 +47,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
     def test_more_details_button_links(self, driver):
-        """Тест работы элемента 'Подробнее' на странице path='/home'. Валидация теста положительна, если при нажатии
+        """Тест работы элемента 'Подробнее' на странице path='/home'. Валидация теста успешна, если при нажатии
         элемента 'Подробнее' браузер открывает новую вкладку по URL = https://evolution.tele2.ru/#about c рекламным
         блоком услуг Tele2. При воздействии на элемент 'Подключиться' система адресует пользователя на URl =
         https://msk.tele2.ru/tariffs c действующими тарифами оператора связи."""
@@ -96,7 +97,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-NAVMENU-01")
     @allure.link("https://msk.tele2.ru/home", name="https://msk.tele2.ru/home")
     def test_SIMs_quantity_price(self, driver):
-        """Тест работы селектора выбора количества sim-карт на странице path='/home'. Валидация теста положительна,
+        """Тест работы селектора выбора количества sim-карт на странице path='/home'. Валидация теста успешна,
         если при последовательном нажатии на каждый элемент селектора с указанным количеством sim-карт к покупке,
         текущая стоимость обслуживания на каждом из доступных тарифов будет уменьшаться с одновременным отображением
         значения в карточке."""
@@ -105,10 +106,24 @@ class TestTele2_Functional_Auth_OFF_Positive:
                          "элементов."):
             page = HomePage(driver)
             page.scroll_to_element(element=page.tariffs_text)
+            page.make_screenshot(file_path=screenshots_folder + "\\SIMs_quantity_price_BEFORE_CHANGES.png")
+            allure.attach(page.get_page_screenshot_PNG(), name="SIMs_quantity_price_BEFORE_CHANGES",
+                          attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 2: Последовательно нажать каждую кнопку селектора выбора количества sim-карт"):
             prices_before = page.check_all_tariffs_prices(driver)
             page.sims_quantity_selector_btns_click(driver)
             prices_after = page.check_all_tariffs_prices(driver)
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
-            print(f'\n{prices_before}\n{prices_after}')
-            assert prices_before != prices_after
+            if prices_before[0] > prices_after[0]:
+                assert float(prices_before[0]) > float(prices_after[0])
+                assert float(prices_before[1]) > float(prices_after[1])
+                assert float(prices_before[2]) > float(prices_after[2])
+                assert float(prices_before[3]) > float(prices_after[3])
+                page.make_screenshot(file_path=screenshots_folder + "\\SIMs_quantity_price_AFTER_CHANGES.png")
+                allure.attach(page.get_page_screenshot_PNG(), name="SIMs_quantity_price_AFTER_CHANGES",
+                              attachment_type=allure.attachment_type.PNG)
+                print(f'\nСтоимость тарифа при покупке одной sim-карты: {prices_before}'
+                      f'\nСтоимость тарифа при покупке пяти sim-карт: {prices_after}')
+            else:
+                raise Exception(f'Ошибка! Проверить работу калькулятора тарифов при покупке нескольких sim-карт.\n'
+                                f'Создать баг-репорт и занести ошибку в систему отслеживания.')
