@@ -57,10 +57,10 @@ def driver_auth():
         page.wait_page_loaded()
         driver.add_cookie({"name": "access_token", "value": access_token})
         driver.implicitly_wait(5)
-        logged_user_phone = driver.find_element(By.CSS_SELECTOR, 'span[class="br"]').text
+        data_base_user_phone = driver.find_element(By.CSS_SELECTOR, 'span[class="br"]').text
         expected_user_phone = os.getenv("AUTH_USER")
-        assert logged_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных "
-                                                          "пользователя.")
+        assert data_base_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
+                                                             "пользователя.")
         yield driver
-    with allure.step("TEAR DOWN 1/1: Закрыть браузер Chrome"):
+    with allure.step("TEAR DOWN: Завершение текущего сеанса работы браузера Chrome"):
         driver.quit()
