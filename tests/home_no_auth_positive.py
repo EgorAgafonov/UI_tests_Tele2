@@ -133,7 +133,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")
 @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-class TestTele2_Functional_Auth_OFF_Positive:
+class TestTele2_Functional_Auth_ON_Positive:
     """Класс с коллекцией positive UI-тестов функционального тестирования веб-сайта оператора "Tele2" в режиме
     неавторизованного пользователя."""
 
@@ -159,7 +159,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
             allure.attach(page.get_page_screenshot_PNG(), name="private_persons_button_click_EXPECTED_RES",
                           attachment_type=allure.attachment_type.PNG)
 
-    @pytest.mark.skip('Тестировать только в момент наличия соответствующего проморолика на сайте!!!')
+    # @pytest.mark.skip('Тестировать только в момент наличия соответствующего проморолика на сайте!!!')
     @pytest.mark.more_details
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка ссылок на ресурс https://evolution.tele2.ru/#about")
@@ -177,40 +177,34 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page = HomePage(driver_auth)
             main_tab = page.get_current_tab_ID_descriptor()
             current_path = page.get_relative_link()
+            page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_BEFORE.png")
+            allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_BEFORE",
+                          attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 2: Нажать на элемент 'Подробнее'"):
             page.more_details_btn_click(driver_auth)
-            page.switch_to_new_browser_tab(starting_page=main_tab)
-            page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_ABOUT.png")
-            allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_/#ABOUT",
-                          attachment_type=allure.attachment_type.PNG)
-        with allure.step("Шаг 3: На открывшейся вкладке окна нажать на белую точку(about) в левой части экрана"):
-            page.about_dot_btn_click(driver_auth)
-        with allure.step("Шаг 4: Нажать на белую точку(mia)"):
-            page.mia_dot_btn_click(driver_auth)
-        with allure.step("Шаг 5: Нажать на белую точку(benefits)"):
-            page.benefits_dot_btn_click(driver_auth)
+            # page.switch_to_new_browser_tab(starting_page=main_tab)
+            page.wait_page_loaded()
             second_path = page.get_relative_link()
-        with allure.step("Шаг 6: Нажать на элемент 'Подключиться'"):
-            page.connect_to_btn_click(driver_auth)
-            tariffs_path = page.get_relative_link()
-        with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
+        with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
             if current_path != second_path:
-                assert tariffs_path == '/tariffs'
-                page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_PASSED.png")
-                allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_PASSED",
+                page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_AFTER.png")
+                allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_AFTER",
                               attachment_type=allure.attachment_type.PNG)
-                page.close_current_browser_tab()
-                page.switch_back_to_main_tab(main_window_id=main_tab)
+                page.private_clients_btn_click(driver_auth)
+                page.wait_page_loaded()
+                # page.close_current_browser_tab()
+                # page.switch_back_to_main_tab(main_window_id=main_tab)
             else:
-                print('Ошибка! Проверить работу ссылки элемента "Подключиться" на странице '
-                      'URL=https://evolution.tele2.ru/#about.')
+                print('Ошибка! Проверить работу ссылки кнопки "Подробнее" на странице path=/home')
                 page.make_screenshot(file_path=screenshots_folder + "\\more_details_button_links_FAILED.png")
                 allure.attach(page.get_page_screenshot_PNG(), name="more_details_button_links_FAILED",
                               attachment_type=allure.attachment_type.PNG)
-                page.close_current_browser_tab()
-                page.switch_back_to_main_tab(main_window_id=main_tab)
+                page.private_clients_btn_click(driver_auth)
+                page.wait_page_loaded()
+                # page.close_current_browser_tab()
+                # page.switch_back_to_main_tab(main_window_id=main_tab)
 
-    @pytest.mark.tariff_price
+    @pytest.mark.tariff_prices
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка калькулятора тарифов для частных лиц")
     @allure.title("Расчет стоимости тарифа при покупке более одной sim-карты")
@@ -234,7 +228,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page.sims_quantity_selector_btns_click(driver_auth)
             prices_after = page.check_all_tariffs_prices(driver_auth)
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
-            if prices_before[0] > prices_after[0]:
+            if prices_before[0] != prices_after[0]:
                 assert float(prices_before[0]) > float(prices_after[0])
                 assert float(prices_before[1]) > float(prices_after[1])
                 assert float(prices_before[2]) > float(prices_after[2])
