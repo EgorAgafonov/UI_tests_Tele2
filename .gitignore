@@ -11,3 +11,4 @@ __pycache__
 
 /tests/allure_results/
 /screens/
+/tests/allure_reports/
