@@ -10,8 +10,8 @@ from pages.base_page import BasePage
 from settings import access_token, session_cookie
 
 
-@pytest.fixture(scope='session')
-def driver():
+@pytest.fixture(scope='class')
+def driver(request):
     """Pytest-фикстура(декоратор) для выполнения UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium в рамках тестирования платформы "Tele2". Определяет setup-настройки перед началом
     выполнения тестовой сессии, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
@@ -30,12 +30,12 @@ def driver():
         driver.implicitly_wait(5)
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         yield driver
-    with allure.step("TEAR DOWN: Закрыть браузер Chrome"):
+    with allure.step(f"TEAR DOWN: Выполнение тестового сеанса {request.cls.__name__} закрыто."):
         driver.quit()
 
 
-@pytest.fixture(scope='session')
-def driver_auth():
+@pytest.fixture(scope='class')
+def driver_auth(request):
     """Pytest-фикстура(декоратор) для выполнения UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium в рамках тестирования платформы "Tele2". Определяет setup-настройки перед началом
     выполнения тестовой сессии, инициализирует запуск драйвера браузера Chrome и передает его в любую тестовую функцию
@@ -62,5 +62,5 @@ def driver_auth():
         assert data_base_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
                                                              "пользователя.")
         yield driver
-    with allure.step("TEAR DOWN: Завершение текущего сеанса работы браузера Chrome"):
+    with allure.step(f"TEAR DOWN: Выполнение тестового сеанса {request.cls.__name__} закрыто."):
         driver.quit()

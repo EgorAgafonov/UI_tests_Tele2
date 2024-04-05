@@ -73,7 +73,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
                 page.private_clients_btn_click(driver)
                 page.wait_page_loaded()
 
-    @pytest.mark.tariff_price
+    @pytest.mark.tariffs_prices
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка калькулятора тарифов для частных лиц")
     @allure.title("Расчет стоимости тарифа при покупке более одной sim-карты")
@@ -179,7 +179,7 @@ class TestTele2_Functional_Auth_ON_Positive:
                 page.private_clients_btn_click(driver_auth)
                 page.wait_page_loaded()
 
-    @pytest.mark.tariff_prices
+    @pytest.mark.tariffs_prices
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка калькулятора тарифов для частных лиц")
     @allure.title("Расчет стоимости тарифа при покупке более одной sim-карты")
