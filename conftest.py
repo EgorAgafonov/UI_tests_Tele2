@@ -25,12 +25,12 @@ def driver(request):
         options.add_argument("--start-maximized")
         driver = webdriver.Chrome(options=options)
     with allure.step("SETUP 2/2: Перейти на страницу https://msk.tele2.ru"):
-        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru/home"
+        url = os.getenv("MAIN_URL") or "https://msk.tele2.ru"
         driver.get(url)
         driver.implicitly_wait(5)
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
         yield driver
-    with allure.step(f"TEAR DOWN: Выполнение тестового сеанса {request.cls.__name__} закрыто."):
+    with allure.step(f"TEAR DOWN: Выполнение тестового набора {request.cls.__name__} окончено."):
         driver.quit()
 
 
@@ -62,5 +62,5 @@ def driver_auth(request):
         assert data_base_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
                                                              "пользователя.")
         yield driver
-    with allure.step(f"TEAR DOWN: Выполнение тестового сеанса {request.cls.__name__} закрыто."):
+    with allure.step(f"TEAR DOWN: Выполнение тестового набора {request.cls.__name__} окончено."):
         driver.quit()
