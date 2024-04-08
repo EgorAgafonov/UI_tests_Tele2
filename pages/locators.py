@@ -18,6 +18,7 @@ class HomePageLocators:
     TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-abonent-fee__current-price-value"]')
 
 
+
 class ToBusinessPageLocators:
     """Класс переменных для определения локаторов элементов страницы "https://msk.tele2.ru/business"""
 
@@ -32,3 +33,10 @@ class OffersPageLocators:
     POPMECHANIC_SUBMIT_BTN = (By.CSS_SELECTOR, 'button[class="popmechanic-submit popmechanic-submit-close"]')
     DISCOUNT_CASHBACK = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                    '1]/div/div/div/div/header/section[1]/ul/li[3]/a')
+
+
+class SlashPageLocators:
+    """"""
+
+    ENTER_AUTH_BTN = (By.CSS_SELECTOR, 'a[class="gtm-new-navigation-login"]')
+
