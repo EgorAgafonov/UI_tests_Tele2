@@ -16,7 +16,10 @@ class HomePageLocators:
     SIMS_QUANTITY_BTNS = (By.CSS_SELECTOR, 'li[class="sim-number-selector__item"]')
     ELEMENT_HOME_LOCATOR = (By.CSS_SELECTOR, 'h1[class="left h1 tariff-cards-container__title space-holder27"]')
     TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-abonent-fee__current-price-value"]')
+    #
     ENTER_AUTH_BTN = (By.CSS_SELECTOR, 'a[class="gtm-new-navigation-login"]')
+    AUTH_BY_SMS_BTN = (By.CSS_SELECTOR, 'button[class="unstyled-button filled-tabs__tab filled-tabs__tab--active"]')
+
 
 
 class ToBusinessPageLocators:

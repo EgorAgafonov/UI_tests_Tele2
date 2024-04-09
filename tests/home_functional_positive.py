@@ -27,7 +27,8 @@ class TestTele2_Authorization_Positive:
         сообщения с кодом. Ожидаемый результат - после получения SMS и ввода кода, пользователь авторизуется на сайте,
         телефон и аватар пользователя отображаются на странице в правом верхнем углу экрана."""
         page = HomePage(driver)
-        page.auth_enter_button_click(driver)
+        page.auth_enter_btn_click(driver)
+        page.auth_by_SMS_btn_click(driver)
         time.sleep(2)
 
 

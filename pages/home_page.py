@@ -18,10 +18,16 @@ class HomePage(BasePage):
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
 
     @staticmethod
-    def auth_enter_button_click(driver):
+    def auth_enter_btn_click(driver):
         """"""
         enter_btn = driver.find_element(*HomePageLocators.ENTER_AUTH_BTN)
         enter_btn.click()
+
+    @staticmethod
+    def auth_by_SMS_btn_click(driver):
+        """"""
+        by_sms_btn = driver.find_element(*HomePageLocators.AUTH_BY_SMS_BTN)
+        by_sms_btn.click()
 
     @staticmethod
     def checking_for_a_popup_menu(driver):
