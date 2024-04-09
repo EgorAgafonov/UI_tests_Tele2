@@ -26,10 +26,15 @@ class TestTele2_Authorization_Positive:
         """Проверка работы системы авторизации ранее зарегистрированного пользователя посредством входящего SMS
         сообщения с кодом. Ожидаемый результат - после получения SMS и ввода кода, пользователь авторизуется на сайте,
         телефон и аватар пользователя отображаются на странице в правом верхнем углу экрана."""
+
         page = HomePage(driver)
         page.auth_enter_btn_click(driver)
         page.auth_by_SMS_btn_click(driver)
         page.enter_user_phone_num(driver, phone_num)
+        page.press_further_btn_click(driver)
+        response_code = input('Укажите код:')
+        page.enter_received_code(driver, code=response_code)
+
         time.sleep(1)
 
 

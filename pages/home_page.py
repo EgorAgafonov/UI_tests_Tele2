@@ -36,6 +36,19 @@ class HomePage(BasePage):
         enter_phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(enter_phone_filed, user_phone).pause(1).perform()
 
+    @staticmethod
+    def press_further_btn_click(driver):
+        """"""
+        further_btn = driver.find_element(*HomePageLocators.FURTHER_BTN)
+        further_btn.click()
+
+    @staticmethod
+    def enter_received_code(driver, code):
+        """"""
+
+        enter_code_field = driver.find_element(*HomePageLocators.CODE_INPUT_FIELD)
+        ActionChains(driver).send_keys_to_element(enter_code_field, code).pause(1).perform()
+
 
     @staticmethod
     def checking_for_a_popup_menu(driver):
