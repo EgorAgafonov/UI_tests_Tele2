@@ -24,7 +24,6 @@ class HomePageLocators:
     CODE_INPUT_FIELD = (By.CSS_SELECTOR, 'input[name="SMS"]')
 
 
-
 class ToBusinessPageLocators:
     """Класс переменных для определения локаторов элементов страницы "https://msk.tele2.ru/business"""
 

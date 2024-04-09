@@ -1,4 +1,5 @@
 /.env
+/cookies.env
 /venv/
 /my_cookies.txt
 /my_cookies.pkl
