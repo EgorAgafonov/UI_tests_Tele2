@@ -30,6 +30,14 @@ class HomePage(BasePage):
         by_sms_btn.click()
 
     @staticmethod
+    def enter_user_phone_num(driver, user_phone):
+        """"""
+
+        enter_phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
+        ActionChains(driver).send_keys_to_element(enter_phone_filed, user_phone).pause(1).perform()
+
+
+    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в
