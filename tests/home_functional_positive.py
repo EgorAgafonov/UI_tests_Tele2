@@ -8,6 +8,36 @@ import time
 
 
 @allure.epic("UI-Tele2_функциональное тестирование UI (позитивные тесты)")
+@allure.feature("Авторизация на сайте")
+@allure.label("Агафонов Е.А.", "владелец")
+@allure.label(LabelType.LANGUAGE, "Python")
+@allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
+class TestTele2_Authorization_Positive:
+    """Класс с коллекцией positive UI-тестов функционального тестирования веб-сайта оператора "Tele2" для проверки
+    системы авторизации пользователя."""
+
+    @pytest.mark.auth_SMS
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Проверка авторизации зарегистрированного пользователя")
+    @allure.title("Авторизация пользователя на сайте через SMS сообщение")
+    @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTHREGUSER")
+    @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
+    def test_reg_user_SMS_authorization(self, driver):
+        """Проверка работы системы авторизации ранее зарегистрированного пользователя посредством входящего SMS
+        сообщения с кодом. Ожидаемый результат - после получения SMS и ввода кода, пользователь авторизуется на сайте,
+        телефон и аватар пользователя отображаются на странице в правом верхнем углу экрана."""
+        page = HomePage(driver)
+        page.auth_enter_button_click(driver)
+        time.sleep(2)
+
+
+
+
+
+
+
+
+@allure.epic("UI-Tele2_функциональное тестирование UI (позитивные тесты)")
 @allure.feature("В режиме неавторизованного пользователя")
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")

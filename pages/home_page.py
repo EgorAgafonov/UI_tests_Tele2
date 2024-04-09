@@ -18,13 +18,19 @@ class HomePage(BasePage):
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
 
     @staticmethod
+    def auth_enter_button_click(driver):
+        """"""
+        enter_btn = driver.find_element(*HomePageLocators.ENTER_AUTH_BTN)
+        enter_btn.click()
+
+    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в
         момент тестирования - тестовая функция выполняется в установленном режиме."""
 
         try:
-            time.sleep(2)
+            time.sleep(1)
             not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
         except WebDriverException:
             pass
