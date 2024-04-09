@@ -32,7 +32,7 @@ class TestTele2_Authorization_Positive:
         page.auth_by_SMS_btn_click(driver)
         page.enter_user_phone_num(driver, phone_num)
         page.press_further_btn_click(driver)
-        time.sleep(15)
+        # time.sleep(15)
 
 
 
