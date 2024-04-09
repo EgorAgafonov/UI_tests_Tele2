@@ -7,8 +7,6 @@ __pycache__
 .idea
 *.idea*
 *.pyc
-
-
 /tests/allure_results/
 /screens/
 /tests/allure_reports/

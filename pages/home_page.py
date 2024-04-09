@@ -47,7 +47,7 @@ class HomePage(BasePage):
         """"""
 
         enter_code_field = driver.find_element(*HomePageLocators.CODE_INPUT_FIELD)
-        ActionChains(driver).send_keys_to_element(enter_code_field, code).pause(1).perform()
+        ActionChains(driver).send_keys_to_element(enter_code_field, code).pause(3).perform()
 
 
     @staticmethod
