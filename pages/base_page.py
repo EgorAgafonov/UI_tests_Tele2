@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-from settings import screenshots_folder
+from settings import *
 from colorama import Style, Fore
 import time
 import selenium
@@ -24,13 +24,11 @@ class BasePage(object):
 
         cookie_value = self.driver.get_cookie(cookie_name)
 
-        with open('Tele2\\token.env', 'w+') as file:
-            file.write(f"ACCESS_TOKEN='{cookie_value['value']}'")
+        with open(token_folder, 'w+') as file:
+            file.write(f'ACCESS_TOKEN="{cookie_value["value"]}"')
+            file.seek(0)
 
         return cookie_value['value']
-
-        # print(f"\n{cookie_value['value']}")
-        # print(f"\n{type(cookie_value)}")
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации

@@ -33,7 +33,7 @@ class TestTele2_Authorization_Positive:
         page.enter_user_phone_num(driver, phone_num)
         page.press_further_btn_click(driver)
         time.sleep(25)
-        result = page.get_and_save_access_cookie('access_token')
+        result = page.get_and_save_access_cookie("access_token")
 
         assert result != ''
 

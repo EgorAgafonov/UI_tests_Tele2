@@ -1,5 +1,4 @@
 import time
-
 import allure
 import pytest
 from selenium.webdriver.chrome.options import *
@@ -7,7 +6,7 @@ from selenium import webdriver
 import os
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-from settings import access_token, session_cookie
+from settings import access_token
 
 
 @pytest.fixture(scope='class')
