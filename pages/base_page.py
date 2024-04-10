@@ -3,6 +3,7 @@ from settings import screenshots_folder
 from colorama import Style, Fore
 import time
 import selenium
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,6 +18,19 @@ class BasePage(object):
         self.driver = driver
         self.url = url
         self.timeout = timeout
+
+    def get_and_save_access_cookie(self, cookie_name):
+        """"""
+
+        cookie_value = self.driver.get_cookie(cookie_name)
+
+        with open('Tele2\\token.env', 'w+') as file:
+            file.write(f"ACCESS_TOKEN='{cookie_value['value']}'")
+
+        return cookie_value['value']
+
+        # print(f"\n{cookie_value['value']}")
+        # print(f"\n{type(cookie_value)}")
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации

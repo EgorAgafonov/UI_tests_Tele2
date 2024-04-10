@@ -43,14 +43,6 @@ class HomePage(BasePage):
         further_btn.click()
 
     @staticmethod
-    def enter_received_code(driver, code):
-        """"""
-
-        enter_code_field = driver.find_element(*HomePageLocators.CODE_INPUT_FIELD)
-        ActionChains(driver).send_keys_to_element(enter_code_field, code).pause(3).perform()
-
-
-    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в
