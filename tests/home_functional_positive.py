@@ -7,6 +7,7 @@ from allure_commons.types import LabelType
 import time
 
 
+@pytest.mark.skip("Тест требует ручного ввода кода SMS по время выполнения")
 @allure.epic("UI-Tele2_функциональное тестирование UI (позитивные тесты)")
 @allure.feature("Авторизация на сайте")
 @allure.label("Агафонов Е.А.", "владелец")
