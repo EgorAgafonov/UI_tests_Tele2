@@ -20,7 +20,8 @@ class BasePage(object):
         self.timeout = timeout
 
     def get_and_save_access_cookie(self, cookie_name):
-        """"""
+        """Метод для получения и сохранения значения value в словаре cookie файла после авторизации пользователя.
+        Методу необходимо передать имя cookie файла."""
 
         cookies_dict = self.driver.get_cookie(cookie_name)
 
