@@ -2,12 +2,9 @@ from urllib.parse import urlparse
 from settings import *
 from colorama import Style, Fore
 import time
-import selenium
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import json
 
 
 class BasePage(object):
@@ -20,13 +17,13 @@ class BasePage(object):
         self.timeout = timeout
 
     def get_and_save_access_cookie(self, cookie_name):
-        """Метод для получения и сохранения значения value в словаре cookie файла после авторизации пользователя.
-        Методу необходимо передать имя cookie файла."""
+        """Метод для получения и сохранения значения value из словаря cookie-файла, генерируемого системой после
+        авторизации пользователя на сайте. Методу необходимо передать имя cookie-файла."""
 
         cookies_dict = self.driver.get_cookie(cookie_name)
 
         with open(cookie_path, 'w') as file:
-            print(f"cookie = {cookies_dict}", file=file)
+            print(f"cookie_dict = {cookies_dict}", file=file)
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации

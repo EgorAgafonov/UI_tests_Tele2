@@ -19,26 +19,29 @@ class HomePage(BasePage):
 
     @staticmethod
     def auth_enter_btn_click(driver):
-        """"""
+        """Метод для нажатия кнопки 'Войти' для авторизации пользователя на сайте"""
+
         enter_btn = driver.find_element(*HomePageLocators.ENTER_AUTH_BTN)
         enter_btn.click()
 
     @staticmethod
     def auth_by_SMS_btn_click(driver):
-        """"""
+        """Метод для воздействия на элемент 'Через SMS' в меню авторизации пользователя на сайте"""
+
         by_sms_btn = driver.find_element(*HomePageLocators.AUTH_BY_SMS_BTN)
         by_sms_btn.click()
 
     @staticmethod
     def enter_user_phone_num(driver, user_phone: str):
-        """"""
+        """Метод для ввода телефона в меню авторизации пользователя на сайте"""
 
         enter_phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(enter_phone_filed, user_phone).pause(1).perform()
 
     @staticmethod
     def press_further_btn_click(driver):
-        """"""
+        """Метод для нажатия кнопки 'Далее' в меню авторизации пользователя на сайте"""
+
         further_btn = driver.find_element(*HomePageLocators.FURTHER_BTN)
         further_btn.click()
 
