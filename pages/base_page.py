@@ -22,13 +22,10 @@ class BasePage(object):
     def get_and_save_access_cookie(self, cookie_name):
         """"""
 
-        cookie_value = self.driver.get_cookie(cookie_name)
+        cookies_dict = self.driver.get_cookie(cookie_name)
 
-        with open(token_folder, 'w+') as file:
-            file.write(f'ACCESS_TOKEN="{cookie_value["value"]}"')
-            file.seek(0)
-
-        return cookie_value['value']
+        with open('.env', 'w+') as file:
+            print(f'ACCESS_TOKEN="{cookies_dict["value"]}"', file=file)
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации
