@@ -25,8 +25,8 @@ class BasePage(object):
 
         cookies_dict = self.driver.get_cookie(cookie_name)
 
-        with open('.env', 'w+') as file:
-            print(f'ACCESS_TOKEN="{cookies_dict["value"]}"', file=file)
+        with open(cookie_path, 'w') as file:
+            print(f"cookie = {cookies_dict}", file=file)
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации

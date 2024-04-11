@@ -30,7 +30,7 @@ class HomePage(BasePage):
         by_sms_btn.click()
 
     @staticmethod
-    def enter_user_phone_num(driver, user_phone):
+    def enter_user_phone_num(driver, user_phone: str):
         """"""
 
         enter_phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)

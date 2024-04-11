@@ -1,5 +1,5 @@
 /.env
-/data.env
+/cookie.py
 /venv/
 /my_cookies.txt
 /my_cookies.pkl

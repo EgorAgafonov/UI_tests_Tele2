@@ -7,6 +7,7 @@ import os
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from settings import *
+from cookie import cookie_dict
 
 
 @pytest.fixture(scope='class')
@@ -55,7 +56,7 @@ def driver_auth(request):
     with allure.step("SETUP 3/3: Выполнение авторизации и проверка данных пользователя на сайте"):
         page = BasePage(driver, url=url)
         page.wait_page_loaded()
-        driver.add_cookie({"name": "access_token", "value": access_token})
+        driver.add_cookie({"name": cookie_dict["name"], "value": cookie_dict["value"]})
         data_base_user_phone = driver.find_element(By.CSS_SELECTOR, 'span[class="br"]').text
         assert data_base_user_phone == auth_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
                                                          "пользователя.")
