@@ -57,9 +57,8 @@ def driver_auth(request):
         page.wait_page_loaded()
         driver.add_cookie({"name": "access_token", "value": access_token})
         data_base_user_phone = driver.find_element(By.CSS_SELECTOR, 'span[class="br"]').text
-        expected_user_phone = os.getenv("AUTH_USER")
-        assert data_base_user_phone == expected_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
-                                                             "пользователя.")
+        assert data_base_user_phone == auth_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
+                                                         "пользователя.")
         yield driver
     with allure.step(f"TEAR DOWN: Выполнение тестового набора {request.cls.__name__} окончено."):
         driver.quit()
