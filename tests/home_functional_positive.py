@@ -25,7 +25,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
         """Тест работы элемента 'Частным лицам' в главном меню навигации сайта. Ожидаемый результат - переход на
         страницу с path='/home'."""
 
-        with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/home"):
+        with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
             page = HomePage(driver)
         with allure.step("Шаг 2: Нажать элемент 'Частным лицам' в главном меню навигации сайта."):
             page.private_clients_btn_click(driver)
