@@ -45,6 +45,7 @@ class TestTele2_Authorization_Positive:
             if result:
                 assert result['name'] != ''
                 assert result['value'] != ''
+                print("Авторизация пользователя на сайте посредством SMS сообщения успешно завершена!")
             else:
                 raise Exception('Ошибка! Cookie-файл авторизации пользователя не сформирован. Проверьте введенные'
                                 'данные пользователя. Иначе создать отчет об ошибке и зарегистрировать в системе '
@@ -53,12 +54,12 @@ class TestTele2_Authorization_Positive:
     @pytest.mark.auth_password
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка авторизации зарегистрированного пользователя")
-    @allure.title("Авторизация пользователя на сайте через SMS сообщение")
+    @allure.title("Авторизация пользователя на сайте по паролю")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PASSWRD")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
     def test_auth_user_by_pass(self, driver, user_phone=actual_phone, user_pass=auth_user_psswrd):
-        """Проверка работы системы авторизации ранее зарегистрированного пользователя посредством входящего SMS
-        сообщения с кодом. Ожидаемый результат - после получения SMS и ввода кода, пользователь авторизуется на сайте,
+        """Проверка работы системы авторизации ранее зарегистрированного пользователя посредством пароля.
+        Ожидаемый результат - после ввода номера телефона и пароля, пользователь авторизуется на сайте,
         телефон и аватар пользователя отображаются на странице в правом верхнем углу экрана."""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
@@ -74,5 +75,15 @@ class TestTele2_Authorization_Positive:
             page.enter_user_password_num(driver, user_pass)
         with allure.step("Шаг 6: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click(driver)
+        with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
+            result = page.get_and_save_access_cookie("access_token")
+            if result:
+                assert result['name'] != ''
+                assert result['value'] != ''
+                print("Авторизация пользователя на сайте по паролю успешно завершена!")
+            else:
+                raise Exception('Ошибка! Cookie-файл авторизации пользователя не сформирован. Проверьте введенные'
+                                'данные пользователя. Иначе создать отчет об ошибке и зарегистрировать в системе '
+                                'отслеживания')
 
 
