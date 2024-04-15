@@ -32,11 +32,25 @@ class HomePage(BasePage):
         by_sms_btn.click()
 
     @staticmethod
+    def auth_by_passwrd_btn_click(driver):
+        """Метод для воздействия на элемент 'По паролю' в меню авторизации пользователя на сайте"""
+
+        by_sms_btn = driver.find_element(*HomePageLocators.AUTH_BY_PASSWRD_BTN)
+        by_sms_btn.click()
+
+    @staticmethod
     def enter_user_phone_num(driver, user_phone: str):
         """Метод для ввода телефона в меню авторизации пользователя на сайте"""
 
-        enter_phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
-        ActionChains(driver).send_keys_to_element(enter_phone_filed, user_phone).pause(1).perform()
+        phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
+        ActionChains(driver).send_keys_to_element(phone_filed, user_phone).pause(1).perform()
+
+    @staticmethod
+    def enter_user_password_num(driver, user_pass: str):
+        """Метод для ввода пароля в меню авторизации пользователя на сайте"""
+
+        password_filed = driver.find_element(*HomePageLocators.PASSWORD_INPUT_FIELD)
+        ActionChains(driver).send_keys_to_element(password_filed, user_pass).pause(1).perform()
 
     @staticmethod
     def press_further_btn_click(driver):

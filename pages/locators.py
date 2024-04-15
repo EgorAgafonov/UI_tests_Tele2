@@ -19,7 +19,10 @@ class HomePageLocators:
     #
     ENTER_AUTH_BTN = (By.CSS_SELECTOR, 'a[class="gtm-new-navigation-login"]')
     AUTH_BY_SMS_BTN = (By.CSS_SELECTOR, 'button[class="unstyled-button filled-tabs__tab filled-tabs__tab--active"]')
-    PHONE_INPUT_FIELD = (By.ID, 'keycloakAuth.phone')
+    AUTH_BY_PASSWRD_BTN = (By.CSS_SELECTOR, 'button[class="unstyled-button filled-tabs__tab"]')
+    PHONE_INPUT_FIELD = (By.CSS_SELECTOR, 'input[type="tel"]')
+    PASSWORD_INPUT_FIELD = (By.ID, 'textField_password')
+
     FURTHER_BTN = (By.CSS_SELECTOR, 'button[class="keycloak-login-form__button btn btn-black"]')
     CODE_INPUT_FIELD = (By.CSS_SELECTOR, 'input[name="SMS"]')
 
