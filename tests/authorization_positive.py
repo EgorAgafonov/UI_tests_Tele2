@@ -27,12 +27,25 @@ class TestTele2_Authorization_Positive:
         сообщения с кодом. Ожидаемый результат - после получения SMS и ввода кода, пользователь авторизуется на сайте,
         телефон и аватар пользователя отображаются на странице в правом верхнем углу экрана."""
 
-        page = HomePage(driver)
-        page.auth_enter_btn_click(driver)
-        page.auth_by_SMS_btn_click(driver)
-        page.enter_user_phone_num(driver, user_phone)
-        page.press_further_btn_click(driver)
-        time.sleep(25)
-        result = page.get_and_save_access_cookie("access_token")
-
-        assert result != ''
+        with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
+            page = HomePage(driver)
+            page.wait_page_loaded()
+        with allure.step("Шаг 2: Нажать кнопку 'Войти'"):
+            page.auth_enter_btn_click(driver)
+        with allure.step("Шаг 3: Нажать кнопку 'По SMS'"):
+            page.auth_by_SMS_btn_click(driver)
+        with allure.step("Шаг 4: Ввести моб.номер зарегистрированного пользователя"):
+            page.enter_user_phone_num(driver, user_phone)
+        with allure.step("Шаг 5: Нажать кнопку 'Далее'"):
+            page.press_further_btn_click(driver)
+        with allure.step("Шаг 6: Ввести код из полученного SMS сообщения от оператора'"):
+            time.sleep(25)
+        with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
+            result = page.get_and_save_access_cookie("access_token")
+            if result:
+                assert result['name'] != ''
+                assert result['value'] != ''
+            else:
+                raise Exception('Ошибка! Cookie-файл авторизации пользователя не сформирован. Проверьте введенные'
+                                'данные пользователя. Иначе создать отчет об ошибке и зарегистрировать в системе '
+                                'отслеживания')

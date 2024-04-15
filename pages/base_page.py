@@ -16,7 +16,7 @@ class BasePage(object):
         self.url = url
         self.timeout = timeout
 
-    def get_and_save_access_cookie(self, cookie_name):
+    def get_and_save_access_cookie(self, cookie_name: str) -> dict:
         """Метод для получения и сохранения значения value из словаря cookie-файла, генерируемого системой после
         авторизации пользователя на сайте. Методу необходимо передать имя cookie-файла."""
 
@@ -24,6 +24,8 @@ class BasePage(object):
 
         with open(cookie_path, 'w') as file:
             print(f"cookie_dict = {cookies_dict}", file=file)
+
+        return cookies_dict
 
     def get_relative_link(self):
         """Метод для получения из URL-адреса текущей страницы значения параметра path. Необходим для валидации
