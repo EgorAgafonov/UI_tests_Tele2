@@ -60,6 +60,13 @@ class HomePage(BasePage):
         further_btn.click()
 
     @staticmethod
+    def press_enter_btn_click(driver):
+        """Метод для нажатия кнопки 'Войти' в меню авторизации пользователя по паролю на сайте"""
+
+        enter_btn = driver.find_element(*HomePageLocators.ENTER_BY_PASSWRD_BTN)
+        enter_btn.click()
+
+    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в
