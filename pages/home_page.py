@@ -67,6 +67,15 @@ class HomePage(BasePage):
         enter_btn.click()
 
     @staticmethod
+    def checking_users_account_data(driver):
+        """Метод для проверки отображения на странице учетных данных аккаунта пользователя после успешной процедуры
+        авторизации на сайте."""
+
+        users_account_data = driver.find_element(*HomePageLocators.ACCOUNTS_AVATAR_DATA).text
+
+        return users_account_data
+
+    @staticmethod
     def checking_for_a_popup_menu(driver):
         """ Метод для проверки наличия на экране pop-up меню для ознакомления с тарифами, перекрывающее контент. При
         появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии меню в

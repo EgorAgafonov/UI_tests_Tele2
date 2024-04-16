@@ -23,9 +23,9 @@ class HomePageLocators:
     PHONE_INPUT_FIELD = (By.CSS_SELECTOR, 'input[type="tel"]')
     PASSWORD_INPUT_FIELD = (By.ID, 'textField_password')
     ENTER_BY_PASSWRD_BTN = (By.CSS_SELECTOR, 'button[class="keycloak-login-form__button btn btn-black"]')
-
     FURTHER_BTN = (By.CSS_SELECTOR, 'button[class="keycloak-login-form__button btn btn-black"]')
     CODE_INPUT_FIELD = (By.CSS_SELECTOR, 'input[name="SMS"]')
+    ACCOUNTS_AVATAR_DATA = (By.CSS_SELECTOR, 'span[class="br"]')
 
 
 class ToBusinessPageLocators:
