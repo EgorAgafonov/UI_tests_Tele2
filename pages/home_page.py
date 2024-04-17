@@ -16,7 +16,6 @@ class HomePage(BasePage):
         super().__init__(driver, timeout)
 
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
-        self.logout_account_btn = driver.find_element(*HomePageLocators.LOGOUT_ACCOUNT_BTN)
 
     @staticmethod
     def auth_enter_btn_click(driver):
@@ -104,11 +103,12 @@ class HomePage(BasePage):
         else:
             cancel_btn.click()
 
-
-    def logout_account_btn_click(self, driver):
+    @staticmethod
+    def logout_account_btn_click(driver):
         """Метод для клика на элементе 'Выход из аккаунта' на странице личного кабинета пользователя."""
 
-
+        logout_account_btn = driver.find_element(*HomePageLocators.LOGOUT_ACCOUNT_BTN)
+        logout_account_btn.click()
 
     @staticmethod
     def private_clients_btn_click(driver):
