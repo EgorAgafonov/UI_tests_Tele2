@@ -5,6 +5,8 @@ class HomePageLocators:
     """Класс переменных для определения локаторов элементов страницы "https://msk.tele2.ru/home"""
 
     POPMECHANIC_SUBMIT_BTN = (By.CSS_SELECTOR, 'button[class="popmechanic-submit popmechanic-submit-close"]')
+    TWO_FACTOR_AUTH_CANCEL_BTN = (By.CSS_SELECTOR, 'a[class="cancel"]')
+    LOGOUT_ACCOUNT_BTN = (By.CSS_SELECTOR, 'button[class="underscored-button"]')
     PRIVATE_CLIENTS_BTN = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                      '1]/div/div/div/div/header/section[1]/ul/li[1]/a')
     TIZER_VIDEO_BTN = (By.CSS_SELECTOR, 'span[class="btn tizer-video-announcement__link btn-white"]')

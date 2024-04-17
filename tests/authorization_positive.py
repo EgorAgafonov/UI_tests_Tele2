@@ -43,6 +43,8 @@ class TestTele2_Authorization_Positive:
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
             result = page.get_and_save_access_cookie("access_token")
             users_account_data = page.checking_users_account_data(driver)
+            page.checking_for_a_popup_menu(driver)
+            page.two_factor_auth_menu_cancel(driver)
             if users_account_data == auth_user_phone:
                 assert result['name'] != ''
                 assert result['value'] != ''
@@ -79,6 +81,8 @@ class TestTele2_Authorization_Positive:
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
             result = page.get_and_save_access_cookie("access_token")
             users_account_data = page.checking_users_account_data(driver)
+            page.checking_for_a_popup_menu(driver)
+            page.two_factor_auth_menu_cancel(driver)
             if users_account_data == auth_user_phone:
                 assert result['name'] != ''
                 assert result['value'] != ''

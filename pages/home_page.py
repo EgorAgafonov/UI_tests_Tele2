@@ -16,6 +16,7 @@ class HomePage(BasePage):
         super().__init__(driver, timeout)
 
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
+        self.logout_account_btn = driver.find_element(*HomePageLocators.LOGOUT_ACCOUNT_BTN)
 
     @staticmethod
     def auth_enter_btn_click(driver):
@@ -88,6 +89,26 @@ class HomePage(BasePage):
             pass
         else:
             not_now_btn.click()
+
+    @staticmethod
+    def two_factor_auth_menu_cancel(driver):
+        """ Метод для проверки наличия на экране pop-up меню для подключения дву-факторной авторизации, перекрывающее
+        контент. При появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии
+         меню в момент тестирования - тестовая функция выполняется в установленном режиме."""
+
+        try:
+            time.sleep(1)
+            cancel_btn = driver.find_element(*HomePageLocators.TWO_FACTOR_AUTH_CANCEL_BTN)
+        except WebDriverException:
+            pass
+        else:
+            cancel_btn.click()
+
+
+    def logout_account_btn_click(self, driver):
+        """Метод для клика на элементе 'Выход из аккаунта' на странице личного кабинета пользователя."""
+
+
 
     @staticmethod
     def private_clients_btn_click(driver):
