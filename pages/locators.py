@@ -36,6 +36,7 @@ class ToBusinessPageLocators:
     POPMECHANIC_SUBMIT_BTN = (By.CSS_SELECTOR, 'button[class="popmechanic-submit popmechanic-submit-close"]')
     FOR_BUSINESS_BTN = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                   '1]/div/div/div/div/header/section[1]/ul/li[2]/a')
+    SELECTOR_TITLE = (By.CSS_SELECTOR, 'h1[class=" h1"]')
 
 
 class OffersPageLocators:
