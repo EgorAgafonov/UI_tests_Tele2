@@ -60,6 +60,7 @@ def driver_auth(request):
         data_base_user_phone = driver.find_element(By.CSS_SELECTOR, 'span[class="br"]').text
         assert data_base_user_phone == auth_user_phone, ("Ошибка авторизации! Проверьте корректность учетных данных"
                                                          "пользователя.")
+        print(f"Cookie-файл авторизации успешно добавлен в сессию. Пользователь авторизован на сайте!")
         yield driver
     with allure.step(f"TEAR DOWN: Выполнение тестового набора {request.cls.__name__} окончено."):
         driver.quit()
