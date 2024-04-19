@@ -64,21 +64,17 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page.payment_periods_selector_btns_click(driver)
             prices_after = page.check_all_tariffs_prices(driver)
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
-            print(f'\n{prices_before}')
-            print(f'\n{prices_after}')
-            assert prices_before[0] > prices_after[0]
-
-            # if prices_before[0] > prices_after[0]:
-            #     assert float(prices_before[0]) > float(prices_after[0])
-            #     assert float(prices_before[1]) > float(prices_after[1])
-            #     assert float(prices_before[2]) > float(prices_after[2])
-            #     assert float(prices_before[3]) > float(prices_after[3])
-            #     page.make_screenshot(file_path=screenshots_folder + "\\discount_for_duration_use_AFTER.png")
-            #     allure.attach(page.get_page_screenshot_PNG(), name="discount_for_duration_use_AFTER",
-            #                   attachment_type=allure.attachment_type.PNG)
-            #     print(f'\nСтоимость бизнес-тарифов без скидки (помесячно): {prices_before}'
-            #           f'\nСтоимость бизнес-тарифов при оплате за 12 месяцев: {prices_after}')
-            # else:
-            #     raise Exception(f'Ошибка! Проверить работу калькулятора скидки на тарифы при оплате за указанное число '
-            #                     f'месяцев.\nСоздать баг-репорт и занести ошибку в систему отслеживания.')
+            if prices_before[1] > prices_after[1]:
+                assert float(prices_before[0]) == float(prices_after[0])
+                assert float(prices_before[1]) > float(prices_after[1])
+                assert float(prices_before[2]) > float(prices_after[2])
+                assert float(prices_before[3]) > float(prices_after[3])
+                page.make_screenshot(file_path=screenshots_folder + "\\discount_for_duration_use_AFTER.png")
+                allure.attach(page.get_page_screenshot_PNG(), name="discount_for_duration_use_AFTER",
+                              attachment_type=allure.attachment_type.PNG)
+                print(f'\nСтоимость бизнес-тарифов без скидки (помесячно): {prices_before}'
+                      f'\nСтоимость бизнес-тарифов при оплате за 12 месяцев: {prices_after}')
+            else:
+                raise Exception(f'Ошибка! Проверить работу калькулятора скидки на тарифы при оплате за указанное число '
+                                f'месяцев.\nСоздать баг-репорт и занести ошибку в систему отслеживания.')
 
