@@ -58,7 +58,8 @@ class TestTele2_Functional_Auth_OFF_Positive:
             allure.attach(page.get_page_screenshot_PNG(), name="SIMs_quantity_price_BEFORE_CHANGES",
                           attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 2: Последовательно нажать каждую кнопку селектора выбора количества sim-карт"):
-        #     prices_before = page.check_all_tariffs_prices(driver)
+            prices_before = page.check_all_tariffs_prices(driver)
+            print(f'\n{prices_before}')
         #     page.sims_quantity_selector_btns_click(driver)
         #     prices_after = page.check_all_tariffs_prices(driver)
         # with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):

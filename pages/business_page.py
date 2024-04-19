@@ -47,11 +47,11 @@ class ToBusinessPage(BasePage):
 
     @staticmethod
     def check_all_tariffs_prices(driver):
-        """Метод для получения(парсинга) информации о стоимости обслуживания на каждом тарифе Tele2."""
+        """Метод для получения(парсинга) информации о стоимости обслуживания на каждом бизнес-тарифе Tele2."""
 
-        prices = driver.find_elements(*HomePageLocators.TARIFFS_CURRENT_PRICES)
+        prices = driver.find_elements(*ToBusinessPageLocators.BUSINESS_TARIFFS_CURRENT_PRICES)
         list_or_prices = []
         for price in range(len(prices)):
-            price_value = prices[price].text
+            price_value = prices[price].text[:3]
             list_or_prices.append(price_value)
         return list_or_prices
