@@ -54,4 +54,5 @@ class ToBusinessPage(BasePage):
         for price in range(len(prices)):
             price_value = prices[price].text[:3]
             list_or_prices.append(price_value)
+
         return list_or_prices
