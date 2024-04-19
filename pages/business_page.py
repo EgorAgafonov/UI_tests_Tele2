@@ -28,9 +28,30 @@ class ToBusinessPage(BasePage):
         момент тестирования - тестовая функция выполняется в установленном режиме."""
 
         try:
-            time.sleep(3)
+            time.sleep(2)
             not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
         except WebDriverException:
             pass
         else:
             not_now_btn.click()
+
+    @staticmethod
+    def payment_periods_selector_btns_click(driver):
+        """Метод для клика по элементам селектора 'Выберите срок оплаты' на странице path=/business.
+        Последовательно нажимает на каждую кнопки со сроком оплаты."""
+
+        selector_buttons = driver.find_elements(*ToBusinessPageLocators.SELECTOR_PAYMENT_PERIODS)
+
+        for button in selector_buttons:
+            ActionChains(driver).click(button).pause(1).perform()
+
+    @staticmethod
+    def check_all_tariffs_prices(driver):
+        """Метод для получения(парсинга) информации о стоимости обслуживания на каждом тарифе Tele2."""
+
+        prices = driver.find_elements(*HomePageLocators.TARIFFS_CURRENT_PRICES)
+        list_or_prices = []
+        for price in range(len(prices)):
+            price_value = prices[price].text
+            list_or_prices.append(price_value)
+        return list_or_prices

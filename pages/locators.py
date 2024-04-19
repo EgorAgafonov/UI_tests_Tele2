@@ -37,6 +37,8 @@ class ToBusinessPageLocators:
     FOR_BUSINESS_BTN = (By.XPATH, '//*[@id="root"]/div/div[1]/div/div/div/div/div['
                                   '1]/div/div/div/div/header/section[1]/ul/li[2]/a')
     SELECTOR_TITLE = (By.CSS_SELECTOR, 'h1[class=" h1"]')
+    SELECTOR_PAYMENT_PERIODS = (By.CSS_SELECTOR, 'li[class="discount-selector__item"]')
+    BUSINESS_TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-card-price__value"]')
 
 
 class OffersPageLocators:
