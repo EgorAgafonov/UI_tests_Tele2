@@ -5,7 +5,6 @@ from selenium.webdriver import Keys
 from pages.base_page import BasePage
 from pages.locators import *
 from selenium.common.exceptions import *
-from tkinter import *
 
 
 class ToBusinessPage(BasePage):
@@ -16,7 +15,7 @@ class ToBusinessPage(BasePage):
 
     @staticmethod
     def for_business_btn_click(driver):
-        """Метод для клика на элементе 'Бизнесу>' в главном меню навигации по сайту."""
+        """Метод для клика на элементе 'Бизнесу' в главном меню навигации по сайту."""
 
         private_clients_btn = driver.find_element(*ToBusinessPageLocators.FOR_BUSINESS_BTN)
         private_clients_btn.click()
