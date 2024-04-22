@@ -63,7 +63,7 @@ class ToBusinessPage(BasePage):
         vip_nums_catalog = self.driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_CATALOG_BTN)
         vip_nums_catalog.click()
 
-    def check_and_save_current_nice_nums(self):
+    def check_and_save_current_nice_nums(self) -> list:
         """"""
 
         nice_nums_list = []
@@ -73,4 +73,28 @@ class ToBusinessPage(BasePage):
             nice_nums_list.append(result)
 
         return nice_nums_list
+
+    def price_0_btn_click(self):
+        """"""
+
+        price_btn_0 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_0)
+        price_btn_0.click()
+
+    def price_1000_btn_click(self):
+        """"""
+
+        price_btn_1000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_1000)
+        price_btn_1000.click()
+
+    def price_3000_btn_click(self):
+        """"""
+
+        price_btn_3000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_3000)
+        price_btn_3000.click()
+
+    def price_15000_btn_click(self):
+        """"""
+
+        price_btn_15000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_15000)
+        price_btn_15000.click()
 

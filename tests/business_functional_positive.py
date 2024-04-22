@@ -102,9 +102,19 @@ class TestTele2_Functional_Auth_OFF_Positive:
                           attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
-            time.sleep(3)
-            print(f"\n{page.check_and_save_current_nice_nums()}")
-
+            page.wait_page_loaded()
+        with allure.step("Шаг 4: Нажать на элемент '0 ₽'"):
+            page.price_0_btn_click()
+            price_0 = page.check_and_save_current_nice_nums()
+        with allure.step("Шаг 5: Нажать на элемент '1 000 ₽'"):
+            page.price_1000_btn_click()
+            price_1000 = page.check_and_save_current_nice_nums()
+        with allure.step("Шаг 6: Нажать на элемент '3 000 ₽'"):
+            page.price_3000_btn_click()
+            price_3000 = page.check_and_save_current_nice_nums()
+        with allure.step("Шаг 7: Нажать на элемент '15 000 ₽'"):
+            page.price_15000_btn_click()
+            price_15000 = page.check_and_save_current_nice_nums()
 
 
 
