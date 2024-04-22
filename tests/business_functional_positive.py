@@ -123,10 +123,11 @@ class TestTele2_Functional_Auth_OFF_Positive:
                 assert price_1000 != price_3000
                 assert price_3000 != price_15000
 
-                for i in price_15000:
-                    assert i not in price_0  # проверим, что номер за 15000 рубл. не присутствует в каталоге номеров,
-                                             # доступных за 0 рубл.
-                print("Тест")
+                for i in range(len(price_15000)):
+                    assert price_15000[i] not in price_0  # проверим, что каждый номер за 15000 рубл. не присутствует в
+                                                          # каталоге номеров, доступных за 0 рубл.
+                print(f"\nСтартовая страница: path={starting_page}"
+                      f"\nПереход по ссылке: path={numbers_page}")
             else:
                 raise Exception('Ошибка! Проверить работу ссылки элемента "Каталог красивых номеров" и/или корректность'
                                 'работы функции добавления номера в каталог соразмерно его стоимости. Создать отчет об '
