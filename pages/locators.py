@@ -39,6 +39,7 @@ class ToBusinessPageLocators:
     SELECTOR_TITLE = (By.CSS_SELECTOR, 'h1[class=" h1"]')
     SELECTOR_PAYMENT_PERIODS = (By.CSS_SELECTOR, 'li[class="discount-selector__item"]')
     BUSINESS_TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-card-price__value"]')
+    VIP_NUMBERS_BANNER = (By.CSS_SELECTOR, 'div[class="numbers-sale-banner-b2b__animation"]')
 
 
 class OffersPageLocators:

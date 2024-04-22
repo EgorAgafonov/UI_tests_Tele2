@@ -85,4 +85,16 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("Проверка услуги выбора моб. номера для бизнеса")
     @allure.title("Работа кнопки 'Каталог красивых номеров'")
+    def test_nice_phone_num_catalog(self, driver):
+        """Проверка работы кнопки 'Каталог красивых номеров' и анализ подборки премиальных номеров безнес-абонентам в
+        зависимости от размера стоимости."""
+
+        with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
+                         "элементов."):
+            page = ToBusinessPage(driver)
+            page.for_business_btn_click(driver)
+
+
+
+
 
