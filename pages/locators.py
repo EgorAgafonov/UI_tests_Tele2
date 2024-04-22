@@ -40,6 +40,9 @@ class ToBusinessPageLocators:
     SELECTOR_PAYMENT_PERIODS = (By.CSS_SELECTOR, 'li[class="discount-selector__item"]')
     BUSINESS_TARIFFS_CURRENT_PRICES = (By.CSS_SELECTOR, 'span[class="tariff-card-price__value"]')
     VIP_NUMBERS_BANNER = (By.CSS_SELECTOR, 'div[class="numbers-sale-banner-b2b__animation"]')
+    VIP_NUMBERS_CATALOG_BTN = (By.CSS_SELECTOR, 'a[class="numbers-sale-banner-b2b__redirect-link btn "]')
+
+
 
 
 class OffersPageLocators:

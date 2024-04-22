@@ -75,6 +75,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
                 page.make_screenshot(file_path=screenshots_folder + "\\discount_for_duration_use_AFTER.png")
                 allure.attach(page.get_page_screenshot_PNG(), name="discount_for_duration_use_AFTER",
                               attachment_type=allure.attachment_type.PNG)
+                page.scroll_up()
                 print(f'\nСтоимость бизнес-тарифов без скидки (помесячно): {prices_before}'
                       f'\nСтоимость бизнес-тарифов при оплате за 12 месяцев: {prices_after}')
             else:
@@ -89,10 +90,18 @@ class TestTele2_Functional_Auth_OFF_Positive:
         """Проверка работы кнопки 'Каталог красивых номеров' и анализ подборки премиальных номеров безнес-абонентам в
         зависимости от размера стоимости."""
 
-        with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
+        with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/business и дождаться полной загрузки всех "
                          "элементов."):
             page = ToBusinessPage(driver)
             page.for_business_btn_click(driver)
+            page.checking_for_a_popup_menu(driver)
+        with allure.step("Шаг 2: Спуститься вниз по странице path=/business до элемента 'Каталог красивых номеров'"):
+            page.scroll_to_element(driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
+            page.make_screenshot(file_path=screenshots_folder + "\\nice_phone_num_catalog_CATALOG_BTN.png")
+            allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_num_catalog_CATALOG_BTN",
+                          attachment_type=allure.attachment_type.PNG)
+        with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
+            page.vip_numbers_catalog_btn_click()
 
 
 

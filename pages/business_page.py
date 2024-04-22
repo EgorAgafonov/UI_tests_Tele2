@@ -13,6 +13,8 @@ class ToBusinessPage(BasePage):
     def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
 
+        self.driver = driver
+
     @staticmethod
     def for_business_btn_click(driver):
         """Метод для клика на элементе 'Бизнесу' в главном меню навигации по сайту."""
@@ -55,3 +57,9 @@ class ToBusinessPage(BasePage):
             list_or_prices.append(price_value)
 
         return list_or_prices
+
+    def vip_numbers_catalog_btn_click(self):
+        """"""
+        vip_nums_catalog = self.driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_CATALOG_BTN)
+        vip_nums_catalog.click()
+
