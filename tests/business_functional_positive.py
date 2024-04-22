@@ -102,6 +102,8 @@ class TestTele2_Functional_Auth_OFF_Positive:
                           attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
+            time.sleep(3)
+            print(f"\n{page.check_and_save_current_nice_nums()}")
 
 
 

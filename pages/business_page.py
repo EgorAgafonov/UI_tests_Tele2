@@ -63,3 +63,14 @@ class ToBusinessPage(BasePage):
         vip_nums_catalog = self.driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_CATALOG_BTN)
         vip_nums_catalog.click()
 
+    def check_and_save_current_nice_nums(self):
+        """"""
+
+        nice_nums_list = []
+        nice_nums = self.driver.find_elements(*ToBusinessPageLocators.VIP_PHONE_NUMBERS)
+        for num in range(len(nice_nums)):
+            result = nice_nums[num].text
+            nice_nums_list.append(result)
+
+        return nice_nums_list
+
