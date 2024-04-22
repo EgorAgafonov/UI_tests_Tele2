@@ -115,6 +115,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
         with allure.step("Шаг 7: Нажать на элемент '15 000 ₽'"):
             page.price_15000_btn_click()
             price_15000 = page.check_and_save_current_nice_nums()
+            time.sleep(3)
 
 
 

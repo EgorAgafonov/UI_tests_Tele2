@@ -78,23 +78,23 @@ class ToBusinessPage(BasePage):
         """"""
 
         price_btn_0 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_0)
-        price_btn_0.click()
+        ActionChains(self.driver).click(price_btn_0).pause(1).perform()
 
     def price_1000_btn_click(self):
         """"""
 
         price_btn_1000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_1000)
-        price_btn_1000.click()
+        ActionChains(self.driver).click(price_btn_1000).pause(1).perform()
 
     def price_3000_btn_click(self):
         """"""
 
         price_btn_3000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_3000)
-        price_btn_3000.click()
+        ActionChains(self.driver).click(price_btn_3000).pause(1).perform()
 
     def price_15000_btn_click(self):
         """"""
 
         price_btn_15000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_15000)
-        price_btn_15000.click()
+        ActionChains(self.driver).click(price_btn_15000).pause(1).perform()
 
