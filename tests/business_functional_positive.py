@@ -42,7 +42,11 @@ class TestTele2_Functional_Auth_OFF_Positive:
             allure.attach(page.get_page_screenshot_PNG(), name="to_business_button_click_EXPECTED_RES",
                           attachment_type=allure.attachment_type.PNG)
 
-    def test_discount_for_duration_use(self, driver_auth):
+    @pytest.mark.tariffs_prices
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Проверка калькулятора тарифов для бизнеса")
+    @allure.title("Расчет скидки на тариф при долгосрочном периоде пользования")
+    def test_discount_for_duration_use(self, driver):
         """Тест работы селектора выбора продолжительности пользования услугами связи и расчета скидки на странице
         path='/business'. Валидация теста успешна, если при последовательном нажатии на каждый элемент селектора с
         указанным количеством месяцев пользования, стоимость обслуживания на каждом из доступных тарифов будет
@@ -50,18 +54,18 @@ class TestTele2_Functional_Auth_OFF_Positive:
 
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
                          "элементов."):
-            page = ToBusinessPage(driver_auth)
-            page.for_business_btn_click(driver_auth)
-            page.scroll_to_element(element=driver_auth.find_element(*ToBusinessPageLocators.SELECTOR_TITLE))
+            page = ToBusinessPage(driver)
+            page.for_business_btn_click(driver)
+            page.scroll_to_element(element=driver.find_element(*ToBusinessPageLocators.SELECTOR_TITLE))
             page.make_screenshot(file_path=screenshots_folder + "\\discount_for_duration_use_BEFORE.png")
             allure.attach(page.get_page_screenshot_PNG(), name="discount_for_duration_use_BEFORE",
                           attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 2: Последовательно нажать каждую кнопку селектора 'Выберите срок оплаты и сравните "
                          "скидку'"):
-            prices_before = page.check_all_tariffs_prices(driver_auth)
-            page.checking_for_a_popup_menu(driver_auth)
-            page.payment_periods_selector_btns_click(driver_auth)
-            prices_after = page.check_all_tariffs_prices(driver_auth)
+            prices_before = page.check_all_tariffs_prices(driver)
+            page.checking_for_a_popup_menu(driver)
+            page.payment_periods_selector_btns_click(driver)
+            prices_after = page.check_all_tariffs_prices(driver)
         with allure.step("Шаг 3: Выполнить проверку ожидаемого результата"):
             if prices_before[1] > prices_after[1]:
                 assert float(prices_before[0]) == float(prices_after[0])
@@ -76,4 +80,9 @@ class TestTele2_Functional_Auth_OFF_Positive:
             else:
                 raise Exception(f'Ошибка! Проверить работу калькулятора скидки на тарифы при оплате за указанное число '
                                 f'месяцев.\nСоздать баг-репорт и занести ошибку в систему отслеживания.')
+
+    @pytest.mark.vip_number
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Проверка услуги выбора моб. номера для бизнеса")
+    @allure.title("Работа кнопки 'Каталог красивых номеров'")
 
