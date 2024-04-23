@@ -88,7 +88,9 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.title("Работа кнопки 'Каталог красивых номеров'")
     def test_nice_phone_num_catalog(self, driver):
         """Проверка работы кнопки 'Каталог красивых номеров' для бизнес-абонентов Tele2 и перехода на страницу с
-        доступными к приобретению премиальными номерами."""
+        доступными к приобретению премиальными номерами. Валидация теста успешна, в случае если после нажатия кнопки
+        происходит переход на страницу с доступными к покупке телефонными номерами для бизнеса, номера отображаются на
+        текущей странице сайта."""
 
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/business и дождаться полной загрузки всех "
                          "элементов."):
@@ -101,40 +103,41 @@ class TestTele2_Functional_Auth_OFF_Positive:
             allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_num_catalog_CATALOG_BTN",
                           attachment_type=allure.attachment_type.PNG)
             starting_page = page.get_relative_link()
+
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
             page.wait_page_loaded()
             numbers_page = page.get_relative_link()
+
         with allure.step("Шаг 4: Нажать на элемент '0 ₽'"):
             page.price_0_btn_click()
-            price_0 = page.check_and_save_current_nice_nums()
+            price_0 = page.check_and_save_current_nice_nums()  # проверим присутствие номеров на странице и сохраним их
+                                                               # в список
         with allure.step("Шаг 5: Нажать на элемент '1 000 ₽'"):
             page.price_1000_btn_click()
             price_1000 = page.check_and_save_current_nice_nums()
+
         with allure.step("Шаг 6: Нажать на элемент '3 000 ₽'"):
             page.price_3000_btn_click()
             price_3000 = page.check_and_save_current_nice_nums()
+
         with allure.step("Шаг 7: Нажать на элемент '15 000 ₽'"):
             page.price_15000_btn_click()
             price_15000 = page.check_and_save_current_nice_nums()
+
         with allure.step("Шаг 8: Выполнить проверку ожидаемого результата"):
-            if starting_page != numbers_page:
+            if starting_page != numbers_page and price_0 is not False:
                 assert price_0 != price_1000
                 assert price_1000 != price_3000
                 assert price_3000 != price_15000
 
                 for i in range(len(price_15000)):
                     assert price_15000[i] not in price_0  # проверим, что каждый номер за 15000 рубл. не присутствует в
-                                                          # каталоге номеров, доступных за 0 рубл.
+                    # каталоге номеров, доступных за 0 рубл.
+
                 print(f"\nСтартовая страница: path={starting_page}"
                       f"\nПереход по ссылке: path={numbers_page}")
             else:
                 raise Exception('Ошибка! Проверить работу ссылки элемента "Каталог красивых номеров" и/или корректность'
                                 'работы функции добавления номера в каталог соразмерно его стоимости. Создать отчет об '
                                 'ошибке и занести в систему отслеживания.')
-
-
-
-
-
-

@@ -36,15 +36,15 @@ class ToBusinessPage(BasePage):
         else:
             not_now_btn.click()
 
-    @staticmethod
-    def payment_periods_selector_btns_click(driver):
-        """Метод для клика по элементам селектора 'Выберите срок оплаты' на странице path=/business.
-        Последовательно нажимает на каждую кнопки со сроком оплаты."""
-
-        selector_buttons = driver.find_elements(*ToBusinessPageLocators.SELECTOR_PAYMENT_PERIODS)
-
-        for button in selector_buttons:
-            ActionChains(driver).click(button).pause(1).perform()
+    # @staticmethod
+    # def payment_periods_selector_btns_click(driver):
+    #     """Метод для клика по элементам селектора 'Выберите срок оплаты' на странице path=/business.
+    #     Последовательно нажимает на каждую кнопки со сроком оплаты."""
+    #
+    #     selector_buttons = driver.find_elements(*ToBusinessPageLocators.SELECTOR_PAYMENT_PERIODS)
+    #
+    #     for button in selector_buttons:
+    #         ActionChains(driver).click(button).pause(1).perform()
 
     @staticmethod
     def check_all_tariffs_prices(driver):
@@ -59,7 +59,8 @@ class ToBusinessPage(BasePage):
         return list_or_prices
 
     def vip_numbers_catalog_btn_click(self):
-        """"""
+        """Метод для клика на кнопке 'Каталог красивых номеров' на странице path=/business'"""
+
         vip_nums_catalog = self.driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_CATALOG_BTN)
         vip_nums_catalog.click()
 
