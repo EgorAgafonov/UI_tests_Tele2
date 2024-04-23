@@ -163,6 +163,13 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page.checking_for_a_popup_menu(driver)
         with allure.step("Шаг 2: Спуститься вниз по странице path=/business до элемента 'Каталог красивых номеров'"):
             page.scroll_to_element(driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
+        with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
+            page.vip_numbers_catalog_btn_click()
+            page.wait_page_loaded()
+        with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению мобильный номер"):
+            available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
+            page.enter_vip_num_to_search(mobile_number=available_nums[3])
+            time.sleep(5)
 
 
 

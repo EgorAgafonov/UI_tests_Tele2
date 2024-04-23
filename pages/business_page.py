@@ -100,3 +100,10 @@ class ToBusinessPage(BasePage):
         price_btn_15000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_15000)
         ActionChains(self.driver).click(price_btn_15000).pause(1).perform()
 
+    def enter_vip_num_to_search(self, mobile_number: str):
+        """Метод ввода в поле поиска мобильного номера на странице path=/business/numbers. Обязательный аргумент
+        принимает строковое значение номера для поиска."""
+
+        search_field = self.driver.find_element(*ToBusinessPageLocators.VIP_NUM_SEARCH_FIELD)
+        ActionChains(self.driver).send_keys_to_element(search_field, mobile_number).pause(1).perform()
+

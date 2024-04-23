@@ -45,6 +45,7 @@ class ToBusinessPageLocators:
     NUM_PRICE_1000 = (By.XPATH, '//*[@id="root"]//ul/li[2]/span')
     NUM_PRICE_3000 = (By.XPATH, '//*[@id="root"]//ul/li[3]/span')
     NUM_PRICE_15000 = (By.XPATH, '//*[@id="root"]//ul/li[4]/span')
+    VIP_NUM_SEARCH_FIELD = (By.ID, 'searchNumber')
 
 
 
