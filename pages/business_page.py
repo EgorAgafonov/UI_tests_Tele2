@@ -65,7 +65,8 @@ class ToBusinessPage(BasePage):
         vip_nums_catalog.click()
 
     def check_and_save_current_nice_nums(self) -> list:
-        """"""
+        """Метод для проверки присутствия на странице тэгов с доступными для приобретения телефонными номерами. Парсит
+        и сохраняет в список первые 20 номеров за выбранную стоимость."""
 
         nice_nums_list = []
         nice_nums = self.driver.find_elements(*ToBusinessPageLocators.VIP_PHONE_NUMBERS)
@@ -76,25 +77,25 @@ class ToBusinessPage(BasePage):
         return nice_nums_list
 
     def price_0_btn_click(self):
-        """"""
+        """Метод для клика на элементе '0₽' на странице path=/business/numbers"""
 
         price_btn_0 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_0)
         ActionChains(self.driver).click(price_btn_0).pause(1).perform()
 
     def price_1000_btn_click(self):
-        """"""
+        """Метод для клика на элементе '1000₽' на странице path=/business/numbers"""
 
         price_btn_1000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_1000)
         ActionChains(self.driver).click(price_btn_1000).pause(1).perform()
 
     def price_3000_btn_click(self):
-        """"""
+        """Метод для клика на элементе '3000₽' на странице path=/business/numbers"""
 
         price_btn_3000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_3000)
         ActionChains(self.driver).click(price_btn_3000).pause(1).perform()
 
     def price_15000_btn_click(self):
-        """"""
+        """Метод для клика на элементе '15000₽' на странице path=/business/numbers"""
 
         price_btn_15000 = self.driver.find_element(*ToBusinessPageLocators.NUM_PRICE_15000)
         ActionChains(self.driver).click(price_btn_15000).pause(1).perform()
