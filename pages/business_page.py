@@ -76,6 +76,13 @@ class ToBusinessPage(BasePage):
 
         return nice_nums_list
 
+    def check_search_results(self) -> str:
+        """"""
+
+        searching_result = self.driver.find_element(*ToBusinessPageLocators.VIP_PHONE_NUMBERS).text
+
+        return searching_result
+
     def price_0_btn_click(self):
         """Метод для клика на элементе '0₽' на странице path=/business/numbers"""
 
@@ -105,5 +112,5 @@ class ToBusinessPage(BasePage):
         принимает строковое значение номера для поиска."""
 
         search_field = self.driver.find_element(*ToBusinessPageLocators.VIP_NUM_SEARCH_FIELD)
-        ActionChains(self.driver).send_keys_to_element(search_field, mobile_number).pause(1).perform()
+        ActionChains(self.driver).send_keys_to_element(search_field, mobile_number).pause(3).perform()
 
