@@ -154,7 +154,9 @@ class TestTele2_Functional_Auth_OFF_Positive:
     @allure.story("Проверка поля для поиска/подбора vip номера для бизнес-тарифа")
     @allure.title("Работа поля ввода для поиска/подбора красивого номера на бизнес-тарифе")
     def test_nice_phone_search_field(self, driver):
-        """"""
+        """Позитивный тест проверки работы поля поиска/подбора доступных премиальных номеров для бизнес-абонентов сети.
+        В поле вводится один из первых 20 представленных на странице номеров со стоимостью '0 ₽'. Ожидаемый результат:
+        результат поиска содержит ранее введенный в поле номер (номер из каталога == введенный в поле поиска номер)"""
 
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/business и дождаться полной загрузки всех "
                          "элементов."):
@@ -170,7 +172,8 @@ class TestTele2_Functional_Auth_OFF_Positive:
             available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
             page.enter_vip_num_to_search(mobile_number=available_nums[3])
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
-            result = page.check_search_results().replace(' ', '').replace('-', '')
+            result = page.check_search_results().replace(' ', '').replace('-', '')  # удалим из строкового значения
+            # найденного номера все лишние символы и знаки для осуществления точной проверки полученного результата
             assert result != ''
             assert result.isnumeric()
             assert available_nums[3].replace(' ', '').replace('-', '') == result
