@@ -175,6 +175,10 @@ class TestTele2_Functional_Auth_OFF_Positive:
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
             result = page.check_search_results().replace(' ', '').replace('-', '')  # удалим из строкового значения
             # найденного номера все лишние символы и знаки для осуществления точной проверки полученного результата
-            assert result != ''
+            page.make_screenshot(file_path=screenshots_folder + "\\nice_phone_search_RESULT.png")
+            allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_search_RESULT",
+                          attachment_type=allure.attachment_type.PNG)
+            assert result != '', "Ошибка! Номера нет в результатах поиска, пустая строка."
             assert result.isnumeric()
             assert available_nums[3].replace(' ', '').replace('-', '') == result
+
