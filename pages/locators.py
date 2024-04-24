@@ -41,6 +41,7 @@ class ToBusinessPageLocators:
     VIP_NUMBERS_BANNER = (By.CSS_SELECTOR, 'div[class="numbers-sale-banner-b2b__animation"]')
     VIP_NUMBERS_CATALOG_BTN = (By.CSS_SELECTOR, 'a[class="numbers-sale-banner-b2b__redirect-link btn "]')
     VIP_PHONE_NUMBERS = (By.XPATH, '//*[@id="root"]//div/span/span')
+    VIP_NUMBERS_RESULTS = (By.CSS_SELECTOR, 'div[class="phone-number-column"] > span > span')
     NUM_PRICE_0 = (By.XPATH, '//*[@id="root"]//ul/li[1]/span')
     NUM_PRICE_1000 = (By.XPATH, '//*[@id="root"]//ul/li[2]/span')
     NUM_PRICE_3000 = (By.XPATH, '//*[@id="root"]//ul/li[3]/span')

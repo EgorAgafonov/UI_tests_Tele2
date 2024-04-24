@@ -165,11 +165,12 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page.scroll_to_element(driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
-            page.wait_page_loaded(check_page_changes=True)
+            page.wait_page_loaded(wait_for_element=driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_RESULTS))
         with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению, верифицированный номер"):
             available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
             page.enter_vip_num_to_search(mobile_number=available_nums[3])
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
-            result = page.check_search_results()
-
-            assert available_nums[3] == result
+            result = page.check_search_results().replace(' ', '').replace('-', '')
+            assert result != ''
+            assert result.isnumeric()
+            assert available_nums[3].replace(' ', '').replace('-', '') == result

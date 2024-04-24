@@ -193,7 +193,7 @@ class BasePage(object):
             if page_loaded and wait_for_element:
                 try:
                     page_loaded = WebDriverWait(self.driver, 0.1).until(
-                        EC.element_to_be_clickable(wait_for_element.locator)
+                        EC.presence_of_element_located(wait_for_element.locator)
                     )
                 except:
                     pass  # Ignore timeout errors
