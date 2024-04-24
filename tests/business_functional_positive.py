@@ -168,8 +168,8 @@ class TestTele2_Functional_Auth_OFF_Positive:
             page.wait_page_loaded(check_page_changes=True)
         with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению, верифицированный номер"):
             available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
-            print(f'\n{available_nums}')
             page.enter_vip_num_to_search(mobile_number=available_nums[3])
+        with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
             result = page.check_search_results()
-            print(f'\n{result}')
+
             assert available_nums[3] == result

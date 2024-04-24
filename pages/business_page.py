@@ -79,9 +79,9 @@ class ToBusinessPage(BasePage):
     def check_search_results(self) -> str:
         """"""
 
-        searching_result = self.driver.find_element(*ToBusinessPageLocators.VIP_PHONE_NUMBERS).text
+        search_results = self.driver.find_element(*ToBusinessPageLocators.VIP_PHONE_NUMBERS).text
 
-        return searching_result
+        return search_results
 
     def price_0_btn_click(self):
         """Метод для клика на элементе '0₽' на странице path=/business/numbers"""
