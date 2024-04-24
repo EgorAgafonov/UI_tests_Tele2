@@ -77,7 +77,8 @@ class ToBusinessPage(BasePage):
         return nice_nums_list
 
     def check_search_results(self) -> str:
-        """"""
+        """Метод для проверки результата поиска доступного для покупки номера. Возвращает результат в виде строкового
+        значения найденного мобильного номера"""
 
         search_results = self.driver.find_element(*ToBusinessPageLocators.VIP_PHONE_NUMBERS).text
 
