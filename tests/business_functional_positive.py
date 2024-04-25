@@ -1,3 +1,6 @@
+"""Модуль для функционального тестирования страницы path=/business с позитивными тест-кейсами. Содержит два класса:
+ 1) Тест-набор в режиме авторизованного пользователя; 2) Тест-набор в режиме неавторизованного пользователя."""
+
 import pytest
 from pages.business_page import ToBusinessPage
 from pages.locators import ToBusinessPageLocators
