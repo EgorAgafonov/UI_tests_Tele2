@@ -32,7 +32,6 @@ class TestTele2_Functional_Auth_OFF_Positive:
             url_before = page.get_relative_link()
         with allure.step("Шаг 2: Нажать элемент 'Бизнесу' в главном меню навигации сайта."):
             page.for_business_btn_click(driver)
-            page.checking_for_a_popup_menu(driver)
             page.wait_page_loaded()
             page.checking_for_a_popup_menu(driver)
             url_after = page.get_relative_link()
