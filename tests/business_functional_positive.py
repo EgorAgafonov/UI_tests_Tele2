@@ -279,7 +279,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
         with allure.step("Шаг 4: Нажать на элемент '0 ₽'"):
             page.price_0_btn_click()
             price_0 = page.check_and_save_current_nice_nums()  # проверим присутствие номеров на странице и сохраним их
-                                                               # в список
+            # в список
             allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_num_catalog_0_RUB_BTN",
                           attachment_type=allure.attachment_type.PNG)
         with allure.step("Шаг 5: Нажать на элемент '1 000 ₽'"):
@@ -304,7 +304,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
                 assert price_3000 != price_15000
                 for i in range(len(price_15000)):
                     assert price_15000[i] not in price_0  # Проверим, что каждый номер за 15000 руб. не присутствует в
-                                                          # каталоге номеров, доступных за 0 рубл.
+                    # каталоге номеров, доступных за 0 рубл.
                 page.for_business_btn_click(driver_auth)
                 print(f"\nСтартовая страница: path={starting_page}"
                       f"\nПереход по ссылке: path={numbers_page}")
@@ -326,21 +326,22 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
 
         with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/business и дождаться полной загрузки всех "
                          "элементов."):
-            page = ToBusinessPage(driver)
-            page.for_business_btn_click(driver)
-            page.checking_for_a_popup_menu(driver)
+            page = ToBusinessPage(driver_auth)
+            page.for_business_btn_click(driver_auth)
+            page.checking_for_a_popup_menu(driver_auth)
         with allure.step("Шаг 2: Спуститься вниз по странице path=/business до элемента 'Каталог красивых номеров'"):
-            page.scroll_to_element(driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
+            page.scroll_to_element(driver_auth.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
-            page.wait_page_loaded(wait_for_element=driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_RESULTS))
+            page.wait_page_loaded(
+                wait_for_element=driver_auth.find_element(*ToBusinessPageLocators.VIP_NUMBERS_RESULTS))
         with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению, верифицированный номер"):
             available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
             page.enter_vip_num_to_search(mobile_number=available_nums[3])
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
             result = page.check_search_results().replace(' ', '').replace('-', '')  # удалим из строкового значения
             # найденного номера все лишние символы и знаки для осуществления точной проверки полученного результата
-            page.make_screenshot(file_path=screenshots_folder + "\\nice_phone_search_RESULT.png")
+
             allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_search_RESULT",
                           attachment_type=allure.attachment_type.PNG)
             assert result != '', "Ошибка! Номера нет в результатах поиска, пустая строка."
