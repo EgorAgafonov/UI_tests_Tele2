@@ -53,6 +53,8 @@ def driver_auth(request):
         driver.get(url)
         driver.implicitly_wait(10)
         driver.find_element(By.XPATH, "//*[@id='root']/div/div[1]/div/div/div/div[1]/div/div/div[2]/button[1]").click()
+        # нажимает на назойливом всплывающем меню с подтверждением региона-местонахождения пользователя.
+
     with allure.step("SETUP 3/3: Выполнение авторизации и проверка данных пользователя на сайте"):
         page = BasePage(driver, url=url)
         page.wait_page_loaded()

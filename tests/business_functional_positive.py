@@ -227,7 +227,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
         указанным количеством месяцев пользования, стоимость обслуживания на каждом из доступных тарифов будет
         уменьшаться с одновременным отображением значения в карточке тарифа."""
 
-        with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/home и дождаться полной загрузки всех "
+        with allure.step("Шаг 1: Открыть страницу URL=https://msk.tele2.ru/business и дождаться полной загрузки всех "
                          "элементов."):
             page = ToBusinessPage(driver_auth)
             page.for_business_btn_click(driver_auth)
@@ -270,7 +270,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
             page = ToBusinessPage(driver_auth)
             page.for_business_btn_click(driver_auth)
             page.checking_for_a_popup_menu(driver_auth)
-        with allure.step("Шаг 2: Спуститься вниз по странице path=/business до элемента 'Каталог красивых номеров'"):
+        with allure.step("Шаг 2: Спуститься вниз по странице до элемента 'Каталог красивых номеров'"):
             page.scroll_to_element(driver_auth.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
             allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_num_catalog_CATALOG_BTN",
                           attachment_type=allure.attachment_type.PNG)
@@ -332,7 +332,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
             page = ToBusinessPage(driver_auth)
             page.for_business_btn_click(driver_auth)
             page.checking_for_a_popup_menu(driver_auth)
-        with allure.step("Шаг 2: Спуститься вниз по странице path=/business до элемента 'Каталог красивых номеров'"):
+        with allure.step("Шаг 2: Спуститься вниз по странице до элемента 'Каталог красивых номеров'"):
             page.scroll_to_element(driver_auth.find_element(*ToBusinessPageLocators.VIP_NUMBERS_BANNER))
         with allure.step("Шаг 3: Нажать кнопку 'Каталог красивых номеров'"):
             page.vip_numbers_catalog_btn_click()
