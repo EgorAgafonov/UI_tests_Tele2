@@ -11,7 +11,7 @@ import time
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")
 @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-class TestTele2_Functional_Auth_OFF_Positive:
+class TestTele2_Functional_HomePage_Auth_OFF:
     """Класс с коллекцией positive UI-тестов функционального тестирования веб-сайта оператора "Tele2" в режиме
     неавторизованного пользователя."""
 
@@ -116,7 +116,7 @@ class TestTele2_Functional_Auth_OFF_Positive:
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")
 @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-class TestTele2_Functional_Auth_ON_Positive:
+class TestTele2_Functional_HomePage_Auth_ON:
     """Класс с коллекцией positive UI-тестов функционального тестирования веб-сайта оператора "Tele2" в режиме
     авторизованного пользователя."""
 
