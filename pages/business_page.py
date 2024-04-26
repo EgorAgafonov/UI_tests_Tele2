@@ -113,5 +113,5 @@ class ToBusinessPage(BasePage):
         принимает строковое значение номера для поиска."""
 
         search_field = self.driver.find_element(*ToBusinessPageLocators.VIP_NUM_SEARCH_FIELD)
-        ActionChains(self.driver).send_keys_to_element(search_field, mobile_number).pause(3).perform()
+        ActionChains(self.driver).send_keys_to_element(search_field, mobile_number).pause(1).perform()
 

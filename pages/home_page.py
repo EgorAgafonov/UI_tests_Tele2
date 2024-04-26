@@ -12,7 +12,7 @@ from tkinter import *
 class HomePage(BasePage):
     """Класс с методами для взаимодействия с элементами страницы URL path=/home"""
 
-    def __init__(self, driver, timeout=10):
+    def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
 
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
@@ -171,4 +171,5 @@ class HomePage(BasePage):
         for price in range(len(prices)):
             price_value = prices[price].text
             list_or_prices.append(price_value)
+
         return list_or_prices

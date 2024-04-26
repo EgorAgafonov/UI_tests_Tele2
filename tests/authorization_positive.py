@@ -74,7 +74,7 @@ class TestTele2_Authorization_Positive:
             page = HomePage(driver)
         with allure.step("Шаг 2: Нажать кнопку 'Войти'"):
             page.auth_enter_btn_click(driver)
-        with allure.step("Шаг 3: Нажать кнопку 'По SMS'"):
+        with allure.step("Шаг 3: Нажать кнопку 'По паролю'"):
             page.auth_by_passwrd_btn_click(driver)
         with allure.step("Шаг 4: В поле 'Номер телефона' указать моб.номер зарегистрированного пользователя"):
             page.enter_user_phone_num(driver, user_phone)

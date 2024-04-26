@@ -49,8 +49,6 @@ class ToBusinessPageLocators:
     VIP_NUM_SEARCH_FIELD = (By.ID, 'searchNumber')
 
 
-
-
 class OffersPageLocators:
     """Класс переменных для определения локаторов элементов страницы "https://msk.tele2.ru/bolshe/offers"""
 
