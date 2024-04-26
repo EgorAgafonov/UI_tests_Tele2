@@ -15,6 +15,7 @@ class HomePage(BasePage):
     def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
 
+        self.driver = driver
         self.tariffs_text = driver.find_element(*HomePageLocators.ELEMENT_HOME_LOCATOR)
 
     @staticmethod
@@ -44,6 +45,13 @@ class HomePage(BasePage):
 
         phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(phone_filed, user_phone).pause(1).perform()
+
+    def check_enter_psswrd_error_msg(self) -> str:
+        """"""
+
+        error_message = self.driver.find_element(*HomePageLocators.ENTER_PASSWRD_ERROR_MSSG).text
+
+        return error_message
 
     @staticmethod
     def enter_user_password_num(driver, user_pass: str):
