@@ -44,11 +44,19 @@ class HomePage(BasePage):
         """Метод для ввода телефона в меню авторизации пользователя на сайте"""
 
         phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
-        ActionChains(driver).send_keys_to_element(phone_filed, user_phone).pause(1).perform()
+        ActionChains(driver).click(phone_filed).send_keys(user_phone).pause(1).perform()
 
-    def check_enter_psswrd_error_msg(self) -> str:
-        """"""
+    def close_auth_menu(self):
+        """Метод для выхода(закрытия) из меню авторизации пользователя по SMS или паролю."""
 
+        close_btn = self.driver.find_element(*HomePageLocators.CLOSE_AUTH_MENU_BTN)
+        close_btn.click()
+
+    def checking_enter_psswrd_error_msg(self) -> str:
+        """Метод для проверки наличия сообщения об ошибке - 'Необходимо ввести пароль' в случае авторизации на сайте по
+        телефону и паролю."""
+
+        time.sleep(1)
         error_message = self.driver.find_element(*HomePageLocators.ENTER_PASSWRD_ERROR_MSSG).text
 
         return error_message
@@ -67,11 +75,10 @@ class HomePage(BasePage):
         further_btn = driver.find_element(*HomePageLocators.FURTHER_BTN)
         further_btn.click()
 
-    @staticmethod
-    def press_enter_btn_click(driver):
+    def press_enter_btn_click(self):
         """Метод для нажатия кнопки 'Войти' в меню авторизации пользователя по паролю на сайте"""
 
-        enter_btn = driver.find_element(*HomePageLocators.ENTER_BY_PASSWRD_BTN)
+        enter_btn = self.driver.find_element(*HomePageLocators.ENTER_BY_PASSWRD_BTN)
         enter_btn.click()
 
     @staticmethod

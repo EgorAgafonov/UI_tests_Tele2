@@ -81,7 +81,7 @@ class TestTele2_Authorization_Positive:
         with allure.step("Шаг 5: В поле 'Пароль' указать пароль зарегистрированного пользователя"):
             page.enter_user_password_num(driver, user_pass)
         with allure.step("Шаг 6: Нажать кнопку 'Войти'"):
-            page.press_enter_btn_click(driver)
+            page.press_enter_btn_click()
             page.wait_page_loaded()
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
             result = page.get_and_save_access_cookie("access_token")
