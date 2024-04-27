@@ -68,6 +68,15 @@ class HomePage(BasePage):
         password_filed = driver.find_element(*HomePageLocators.PASSWORD_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(password_filed, user_pass).pause(1).perform()
 
+    def checking_enter_phone_num_error_msg(self) -> str:
+        """Метод для проверки наличия сообщения об ошибке - 'Не введен номер телефона' в случае авторизации на сайте по
+        телефону и паролю."""
+
+        time.sleep(1)
+        error_message = self.driver.find_element(*HomePageLocators.ENTER_PHONE_NUM_ERROR_MSSG).text
+
+        return error_message
+
     @staticmethod
     def press_further_btn_click(driver):
         """Метод для нажатия кнопки 'Далее' в меню авторизации пользователя на сайте"""
