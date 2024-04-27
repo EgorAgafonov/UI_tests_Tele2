@@ -43,8 +43,8 @@ class HomePage(BasePage):
     def enter_user_phone_num(driver, user_phone: str):
         """Метод для ввода телефона в меню авторизации пользователя на сайте"""
 
-        phone_filed = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
-        ActionChains(driver).click(phone_filed).send_keys(user_phone).pause(1).perform()
+        phone_field = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
+        ActionChains(driver).send_keys_to_element(phone_field, user_phone).pause(1).perform()
 
     def close_auth_menu(self):
         """Метод для выхода(закрытия) из меню авторизации пользователя по SMS или паролю."""

@@ -23,7 +23,7 @@ class TestTele2_Authorization_Negative:
     @allure.title("Авторизация пользователя по номеру телефона без указания пароля")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PASSWRD")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
-    def test_auth_user_by_phone_negative(self, driver):
+    def test_auth_user_by_phone_negative(self, driver, phone_num='9771112222'):
         """Негативный тест работы системы авторизации ранее зарегистрированного пользователя посредством ввода не
         верифицированного номера телефона без указания пароля. Ожидаемый результат - система отказывает в авторизации и
         выводит сервисное сообщение о необходимости ввести пароль."""
@@ -35,12 +35,11 @@ class TestTele2_Authorization_Negative:
         with allure.step("Шаг 3: Нажать кнопку 'По паролю'"):
             page.auth_by_passwrd_btn_click(driver)
         with allure.step("Шаг 4: В поле 'Номер телефона' указать не верифицированный моб.номер"):
-            page.enter_user_phone_num(driver, '9771112222')
+            page.enter_user_phone_num(driver, phone_num)
         with allure.step("Шаг 5: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click()
             error_message = page.checking_enter_psswrd_error_msg()
         with allure.step("Шаг 6: Выполнить проверку ожидаемого результата"):
-
             if not page.checking_users_account_data(driver):
                 print('Отказ в авторизации, данные аккаунта пользователя отсутствуют.')
                 assert error_message == 'Необходимо ввести пароль'
