@@ -71,7 +71,7 @@ class TestTele2_Authorization_Negative:
         with allure.step("Шаг 3: Нажать кнопку 'По паролю'"):
             page.auth_by_passwrd_btn_click(driver)
         with allure.step("Шаг 4: В поле 'Пароль' указать не верифицированное значение пароля"):
-            page.enter_user_password_num(driver,password)
+            page.enter_user_password_num(driver, password)
         with allure.step("Шаг 5: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click()
             error_message = page.checking_enter_phone_num_error_msg()
@@ -97,8 +97,8 @@ class TestTele2_Authorization_Negative:
     @allure.title("Авторизация пользователя с параметризацией не верифицированных данных пароля и телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PARAMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
-    @pytest.mark.parametrize('phone', ['', ], ids='empty_str')
-    @pytest.mark.parametrize('password', [''], ids='empty_str')
+    @pytest.mark.parametrize('phone', ['', '12e45QW'], ids=['empty_str', 'mix_char-nums'])
+    @pytest.mark.parametrize('password', [''], ids=['empty_str'])
     def test_auth_by_passwrd_params_negative(self, driver, phone, password):
         """"""
 
@@ -114,3 +114,5 @@ class TestTele2_Authorization_Negative:
             page.enter_user_password_num(driver, password)
         with allure.step("Шаг 6: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click()
+            page.close_auth_menu()
+            time.sleep(2)
