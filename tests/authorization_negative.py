@@ -97,7 +97,8 @@ class TestTele2_Authorization_Negative:
     @allure.title("Авторизация пользователя с параметризацией не верифицированных данных пароля и телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PARAMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
-    @pytest.mark.parametrize('phone')
+    @pytest.mark.parametrize('phone', ['', ], ids='empty_str')
+    @pytest.mark.parametrize('password', [''], ids='empty_str')
     def test_auth_by_phone_passwrd_params_negative(self, driver, phone, password):
         """"""
 
