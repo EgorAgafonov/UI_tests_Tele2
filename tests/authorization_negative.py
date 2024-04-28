@@ -99,7 +99,7 @@ class TestTele2_Authorization_Negative:
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
     @pytest.mark.parametrize('phone', ['', ], ids='empty_str')
     @pytest.mark.parametrize('password', [''], ids='empty_str')
-    def test_auth_by_phone_passwrd_params_negative(self, driver, phone, password):
+    def test_auth_by_passwrd_params_negative(self, driver, phone, password):
         """"""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
