@@ -97,12 +97,15 @@ class TestTele2_Authorization_Negative:
     @allure.title("Авторизация пользователя с параметризацией не верифицированных данных пароля и телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PARAMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
-    @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', '99127341129388577123995'],
-                             ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic', 'digit_symbols_value>20'])
-    # @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
-    #                          ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
+    @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', '99127341129388577123995', '!@#$%^&&^*()_+='],
+                             ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic',
+                                  'digit_symbols_value>20', 'spec_symbols'])
+    @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
+                             ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
     def test_auth_by_passwrd_params_negative(self, driver, phone, password='123'):
-        """"""
+        """Негативный тест с параметризацией не верифицированных (согласно документации) значений номера телефона и
+        пароля пользователя при авторизации на сайте. Ожидаемый результат - система отказывает в авторизации при вводе
+        не верифицированных значений, поле номера телефона не принимает буквенных значений и спец. символов."""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
             page = HomePage(driver)
@@ -127,17 +130,12 @@ class TestTele2_Authorization_Negative:
 
             # 2 Проверка:
             assert entered_value != phone or entered_value == ''  # поле для ввода телефона (атрибут 'value' тэга input)
-                                                                  # после нажатия кнопки 'Войти не приняло буквенные
-                                                                  # символы  и/или пустую строку c номером телефона;
+            # после нажатия кнопки 'Войти не приняло буквенные
+            # символы  и/или пустую строку c номером телефона;
             print(f'2) Поле для ввода номера телефона не приняло параметр phone = {phone} '
                   f'\n\nНегативный тест пройден успешно!')
             page.refresh_page()
             page.checking_for_a_popup_menu(driver)
-
-
-
-
-
 
         #         pass
         #     else:
