@@ -119,23 +119,26 @@ class TestTele2_Authorization_Negative:
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
             entered_value = page.check_entered_value_to_phone_field_()
             page.close_auth_menu()
+            # 1 Проверка:
             try:
                 page.checking_users_account_data(driver)
             except WebDriverException:
                 print('\n1) Пользователь не авторизован, данные об аккаунте на странице отсутствуют.')
-            assert entered_value != phone or entered_value == ''
+
+            # 2 Проверка:
+            assert entered_value != phone or entered_value == ''  # поле для ввода телефона (атрибут 'value' тэга input)
+                                                                  # после нажатия кнопки 'Войти не приняло буквенные
+                                                                  # символы  и/или пустую строку c номером телефона;
+            print(f'2) Поле для ввода номера телефона не приняло параметр phone = {phone} '
+                  f'\n\nНегативный тест пройден успешно!')
             page.refresh_page()
             page.checking_for_a_popup_menu(driver)
-            print(f'\n{entered_value}')
 
 
 
 
-        #
-        #         assert error_message == '', (f'\nОшибка! Текст сообщения на сайте не '
-        #                                                              f'соответствует установленному документацией.')
-        #         print(f'2) Сообщение "{error_message}" инициировано, в авторизации без номера телефона отказано. '
-        #               f'\n\nНегативный тест пройден успешно!')
+
+
         #         pass
         #     else:
         #         raise Exception(

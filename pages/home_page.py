@@ -47,7 +47,9 @@ class HomePage(BasePage):
         ActionChains(driver).send_keys_to_element(phone_field, user_phone).pause(1).perform()
 
     def check_entered_value_to_phone_field_(self) -> str:
-        """"""
+        """Проверка переданного серверу значения номера телефона после нажатия кнопки 'Войти' в меню авторизации.
+        Проверяет значение атрибута 'value' тэга input (текстовое поле для ввода номера телефона). Необходим для
+        валидации теста test_auth_by_passwrd_params_negative."""
 
         entered_phone_value = self.driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         result = entered_phone_value.get_attribute("value")
