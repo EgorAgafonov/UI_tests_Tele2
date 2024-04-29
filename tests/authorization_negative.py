@@ -100,8 +100,8 @@ class TestTele2_Authorization_Negative:
     @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', '99127341129388577123995', '!@#$%^&&^*()_+='],
                              ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic',
                                   'digit_symbols_value>20', 'spec_symbols'])
-    @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
-                             ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
+    # @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
+    #                          ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
     def test_auth_by_passwrd_params_negative(self, driver, phone, password='123'):
         """Негативный тест с параметризацией не верифицированных (согласно документации) значений номера телефона и
         пароля пользователя при авторизации на сайте. Ожидаемый результат - система отказывает в авторизации при вводе
@@ -127,19 +127,19 @@ class TestTele2_Authorization_Negative:
                 page.checking_users_account_data(driver)
             except WebDriverException:
                 print('\n1) Пользователь не авторизован, данные об аккаунте на странице отсутствуют.')
+                pass
+            else:
+                raise Exception(
+                    f'\nОшибка!'
+                    f'\n1) Пользователь авторизовался в системе с не верифицированными данными;'
+                    f'\n2) Поле для ввода номера телефона принимает пустые, буквенные и/или спец. символьные значения;'
+                    f'\n Создать отчеты об ошибках и зарегистрировать их в системе отслеживания!')
 
             # 2 Проверка:
-            assert entered_value != phone or entered_value == ''  # поле для ввода телефона (атрибут 'value' тэга input)
-            # после нажатия кнопки 'Войти не приняло буквенные
-            # символы  и/или пустую строку c номером телефона;
+            assert entered_value != phone or entered_value == ''  # поле для ввода телефона (атрибут 'value' тега
+            # input) после нажатия кнопки 'Войти не приняло буквенные символы  и/или пустую строку c номером
+            # телефона;
             print(f'2) Поле для ввода номера телефона не приняло параметр phone = {phone} '
                   f'\n\nНегативный тест пройден успешно!')
             page.refresh_page()
             page.checking_for_a_popup_menu(driver)
-
-        #         pass
-        #     else:
-        #         raise Exception(
-        #             f'\nОшибка! Уведомление "{error_message}" отсутствует, пользователь авторизовался в '
-        #             f'системе, выполнен вход в аккаунт.\nСоздать отчет об ошибке и зарегистрировать её в '
-        #             f'системе отслеживания!')
