@@ -118,6 +118,8 @@ class HomePage(BasePage):
 
         try:
             time.sleep(1)
+            pop_up_menu = driver.find_element(*HomePageLocators.POPMECHANIC_MENU)
+            time.sleep(1)
             not_now_btn = driver.find_element(*HomePageLocators.POPMECHANIC_SUBMIT_BTN)
         except WebDriverException:
             pass

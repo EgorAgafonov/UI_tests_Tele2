@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 class HomePageLocators:
     """Класс переменных для определения локаторов элементов страницы "https://msk.tele2.ru/home"""
 
+    POPMECHANIC_MENU = (By.CSS_SELECTOR, 'div[class="popmechanic-title"]')
     POPMECHANIC_SUBMIT_BTN = (By.CSS_SELECTOR, 'button[class="popmechanic-submit popmechanic-submit-close"]')
     TWO_FACTOR_AUTH_CANCEL_BTN = (By.CSS_SELECTOR, 'a[class="cancel"]')
     LOGOUT_ACCOUNT_BTN = (By.CSS_SELECTOR, 'button[class="underscored-button"]')
