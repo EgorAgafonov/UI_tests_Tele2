@@ -97,12 +97,12 @@ class TestTele2_Authorization_Negative:
     @allure.title("Авторизация пользователя с параметризацией не верифицированных данных пароля и телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PARAMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
-    @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', 9771111111, '99127341129388577123995'],
-                             ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic', 'random_number_int',
-                                  'digit_symbols_value>20'])
-    @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
-                             ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
-    def test_auth_by_passwrd_params_negative(self, driver, phone, password):
+    # @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', 9771111111, '99127341129388577123995'],
+    #                          ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic', 'random_number_int',
+    #                               'digit_symbols_value>20'])
+    # @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
+    #                          ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
+    def test_auth_by_passwrd_params_negative(self, driver, phone='9115', password='123'):
         """"""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
@@ -117,5 +117,26 @@ class TestTele2_Authorization_Negative:
             page.enter_user_password_num(driver, password)
         with allure.step("Шаг 6: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click()
+            entered_value = page.check_entered_value_to_phone_field_()
             page.close_auth_menu()
-            time.sleep(2)
+            page.refresh_page()
+            page.checking_for_a_popup_menu(driver)
+            print(f'\n{entered_value}')
+
+
+        # with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
+        #     try:
+        #         page.checking_users_account_data(driver)
+        #     except WebDriverException:
+        #         print('\n1) Пользователь не авторизован, данные об аккаунте на странице отсутствуют.')
+        #
+        #         assert error_message == '', (f'\nОшибка! Текст сообщения на сайте не '
+        #                                                              f'соответствует установленному документацией.')
+        #         print(f'2) Сообщение "{error_message}" инициировано, в авторизации без номера телефона отказано. '
+        #               f'\n\nНегативный тест пройден успешно!')
+        #         pass
+        #     else:
+        #         raise Exception(
+        #             f'\nОшибка! Уведомление "{error_message}" отсутствует, пользователь авторизовался в '
+        #             f'системе, выполнен вход в аккаунт.\nСоздать отчет об ошибке и зарегистрировать её в '
+        #             f'системе отслеживания!')

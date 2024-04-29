@@ -46,6 +46,16 @@ class HomePage(BasePage):
         phone_field = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(phone_field, user_phone).pause(1).perform()
 
+    def check_entered_value_to_phone_field_(self) -> str:
+        """"""
+
+        entered_phone_value = self.driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
+        result = entered_phone_value.get_attribute("value")
+        return result
+
+
+
+
     def close_auth_menu(self):
         """Метод для выхода(закрытия) из меню авторизации пользователя по SMS или паролю."""
 
@@ -89,6 +99,7 @@ class HomePage(BasePage):
 
         enter_btn = self.driver.find_element(*HomePageLocators.ENTER_BY_PASSWRD_BTN)
         enter_btn.click()
+        time.sleep(1)
 
     @staticmethod
     def checking_users_account_data(driver):
