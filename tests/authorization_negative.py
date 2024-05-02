@@ -19,14 +19,14 @@ class TestTele2_Authorization_Negative:
 
     @pytest.mark.auth_number_only
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Авторизация зарегистрированного пользователя по номеру и паролю")
+    @allure.story("Авторизация пользователя по паролю")
     @allure.title("Авторизация пользователя по номеру телефона без указания пароля")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PHONE")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
     def test_auth_only_by_phone_negative(self, driver, phone_num='9771112222'):
         """Негативный тест работы системы авторизации ранее зарегистрированного пользователя посредством ввода не
-        верифицированного номера телефона без указания пароля. Ожидаемый результат - система отказывает в авторизации и
-        выводит сервисное сообщение о необходимости ввести пароль."""
+        верифицированного номера телефона без указания пароля. Ожидаемый результат - система отказывает в авторизации
+        и выводит сервисное сообщение о необходимости ввести пароль."""
 
         with allure.step("Шаг 1: Открыть страницу https://msk.tele2.ru/"):
             page = HomePage(driver)
@@ -61,7 +61,7 @@ class TestTele2_Authorization_Negative:
 
     @pytest.mark.auth_password_only
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Авторизация зарегистрированного пользователя по номеру и паролю")
+    @allure.story("Авторизация пользователя по паролю")
     @allure.title("Авторизация пользователя по паролю без указания телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PASSWRD")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
@@ -103,15 +103,15 @@ class TestTele2_Authorization_Negative:
                                 f'системе, выполнен вход в аккаунт.\nСоздать отчет об ошибке и зарегистрировать её в '
                                 f'системе отслеживания!')
 
-    @pytest.mark.auth_incorrect_data
+    @pytest.mark.auth_unverified_params
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Авторизация зарегистрированного пользователя по номеру и паролю")
-    @allure.title("Авторизация пользователя с параметризацией не верифицированных данных пароля и телефона")
+    @allure.story("Авторизация пользователя по паролю")
+    @allure.title("Авторизация с параметризацией не верифицированных данных пароля и телефона")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PARAMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
     @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', '99127341129388577123995', '!@#$%^&&^*()_+='],
-                             ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic',
-                                  'digit_symbols_value>20', 'spec_symbols'])
+                             ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic', 'digit_symbols_value>20',
+                                  'spec_symbols'])
     @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+=', '%_++-==ью!>рр#$%^&*(тук`|?'],
                              ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols', 'mix_cyrllc_spec.symbls>20'])
     def test_auth_by_passwrd_params_negative(self, driver, phone, password):
