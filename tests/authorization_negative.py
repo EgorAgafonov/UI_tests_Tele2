@@ -47,8 +47,14 @@ class TestTele2_Authorization_Negative:
                 assert error_message == 'Необходимо ввести пароль'
                 print(f'2) Сообщение "{error_message}" инициировано, в авторизации без указания пароля отказано. '
                       f'\n\nНегативный тест пройден успешно!')
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_only_by_phone_negative_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
                 pass
             else:
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_only_by_phone_negative_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
                 raise Exception('Ошибка! Уведомление о необходимости ввести пароль отсутствует, пользователь '
                                 'авторизован без пароля. Создать отчет об ошибке и зарегистрировать её в системе '
                                 'отслеживания! ')
@@ -85,8 +91,14 @@ class TestTele2_Authorization_Negative:
                                                                      f'соответствует установленному документацией.')
                 print(f'2) Сообщение "{error_message}" инициировано, в авторизации без номера телефона отказано. '
                       f'\n\nНегативный тест пройден успешно!')
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_only_by_passwrd_negative_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
                 pass
             else:
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_only_by_passwrd_negative_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
                 raise Exception(f'\nОшибка! Уведомление "{error_message}" отсутствует, пользователь авторизовался в '
                                 f'системе, выполнен вход в аккаунт.\nСоздать отчет об ошибке и зарегистрировать её в '
                                 f'системе отслеживания!')
@@ -100,9 +112,9 @@ class TestTele2_Authorization_Negative:
     @pytest.mark.parametrize('phone', ['', '12e45QW', 'Цу3к89АПпРСьб012', '99127341129388577123995', '!@#$%^&&^*()_+='],
                              ids=['empty_str', 'mix_char-nums_latin', 'mix_char-nums_cyrillic',
                                   'digit_symbols_value>20', 'spec_symbols'])
-    # @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+='],
-    #                          ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols'])
-    def test_auth_by_passwrd_params_negative(self, driver, phone, password='123'):
+    @pytest.mark.parametrize('password', ['', '9аъйью1р3тукр1234', '!@#$%^&*()_+=', '%_++-==ью!>рр#$%^&*(тук`|?'],
+                             ids=['empty_str', 'mix_char-nums_cyrillic', 'spec_symbols', 'mix_cyrllc_spec.symbls>20'])
+    def test_auth_by_passwrd_params_negative(self, driver, phone, password):
         """Негативный тест с параметризацией не верифицированных (согласно документации) значений номера телефона и
         пароля пользователя при авторизации на сайте. Ожидаемый результат - система отказывает в авторизации при вводе
         не верифицированных значений, поле номера телефона не принимает буквенных значений и спец. символов."""
@@ -121,25 +133,28 @@ class TestTele2_Authorization_Negative:
             page.press_enter_btn_click()
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
             entered_value = page.check_entered_value_to_phone_field_()
-            page.close_auth_menu()
             # 1 Проверка:
             try:
                 page.checking_users_account_data(driver)
             except WebDriverException:
                 print('\n1) Пользователь не авторизован, данные об аккаунте на странице отсутствуют.')
+            # 2 Проверка:
+                assert entered_value != phone or entered_value == ''  # проверка, что поле для ввода телефона (атрибут
+                # 'value' тега input) после нажатия кнопки 'Войти, не приняло буквенные символы и/или пустую строку c
+                # номером телефона;
+                print(f'2) Поле для ввода номера телефона не приняло параметр phone = {phone} '
+                      f'\nНегативный тест пройден успешно!\n')
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_by_passwrd_params_negative_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
+                page.checking_for_a_popup_menu(driver)
                 pass
             else:
-                raise Exception(
-                    f'\nОшибка!'
-                    f'\n1) Пользователь авторизовался в системе с не верифицированными данными;'
-                    f'\n2) Поле для ввода номера телефона принимает пустые, буквенные и/или спец. символьные значения;'
-                    f'\n Создать отчеты об ошибках и зарегистрировать их в системе отслеживания!')
-
-            # 2 Проверка:
-            assert entered_value != phone or entered_value == ''  # поле для ввода телефона (атрибут 'value' тега
-            # input) после нажатия кнопки 'Войти не приняло буквенные символы и/или пустую строку c номером
-            # телефона;
-            print(f'2) Поле для ввода номера телефона не приняло параметр phone = {phone} '
-                  f'\nНегативный тест пройден успешно!\n')
-            page.refresh_page()
-            page.checking_for_a_popup_menu(driver)
+                allure.attach(page.get_page_screenshot_PNG(), name="auth_by_passwrd_params_negative_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
+                page.close_auth_menu()
+                raise Exception(f'\nОшибка!'
+                                f'\n1) Пользователь авторизовался в системе с не верифицированными данными;'
+                                f'\n2) Поле для ввода номера телефона принимает пустые, буквенные и/или спец. '
+                                f'символьные значения;'
+                                f'\n Создать отчеты об ошибках и зарегистрировать их в системе отслеживания!')
