@@ -19,7 +19,7 @@ class TestTele2_Authorization_Positive:
     # @pytest.mark.skip("Тест требует ручного ввода кода SMS по время выполнения")
     @pytest.mark.auth_SMS
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Проверка авторизации зарегистрированного пользователя")
+    @allure.story("Проверка авторизации пользователя по SMS")
     @allure.title("Авторизация пользователя на сайте через SMS сообщение")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_SMS")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")
@@ -61,7 +61,7 @@ class TestTele2_Authorization_Positive:
 
     @pytest.mark.auth_password
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Проверка авторизации зарегистрированного пользователя")
+    @allure.story("Проверка авторизации пользователя по паролю")
     @allure.title("Авторизация пользователя на сайте по паролю")
     @allure.testcase("https://msk.tele2.ru/", "TC-TELE2-AUTH_PASSWRD")
     @allure.link("https://msk.tele2.ru", name="https://msk.tele2.ru")

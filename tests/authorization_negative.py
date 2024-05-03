@@ -5,7 +5,6 @@ import allure
 from allure_commons.types import LabelType
 from selenium.common.exceptions import *
 import time
-from pages.locators import *
 
 
 @allure.epic("UI-Tele2_функциональное тестирование UI (негативные тесты)")
