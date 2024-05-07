@@ -131,7 +131,7 @@ class TestTele2_Authorization_Negative:
         with allure.step("Шаг 6: Нажать кнопку 'Войти'"):
             page.press_enter_btn_click()
         with allure.step("Шаг 7: Выполнить проверку ожидаемого результата"):
-            entered_value = page.check_entered_value_to_phone_field_()
+            entered_value = page.check_entered_value_to_phone_field()
             # 1 Проверка:
             try:
                 page.checking_users_account_data(driver)

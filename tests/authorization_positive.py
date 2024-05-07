@@ -48,6 +48,7 @@ class TestTele2_Authorization_Positive:
             page.two_factor_auth_menu_cancel(driver)
             page.scroll_to_element(driver.find_element(*HomePageLocators.LOGOUT_ACCOUNT_BTN))
             page.logout_account_btn_click(driver)
+            page.wait_page_loaded()
             if users_account_data == auth_user_phone:
                 assert result['name'] != ''
                 assert result['value'] != ''

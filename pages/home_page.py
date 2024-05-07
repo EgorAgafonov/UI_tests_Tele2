@@ -46,7 +46,7 @@ class HomePage(BasePage):
         phone_field = driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         ActionChains(driver).send_keys_to_element(phone_field, user_phone).pause(1).perform()
 
-    def check_entered_value_to_phone_field_(self) -> str:
+    def check_entered_value_to_phone_field(self) -> str:
         """Проверка переданного серверу значения номера телефона после нажатия кнопки 'Войти' в меню авторизации.
         Проверяет значение атрибута 'value' тэга input (текстовое поле для ввода номера телефона). Необходим для
         валидации теста test_auth_by_passwrd_params_negative."""
@@ -54,9 +54,6 @@ class HomePage(BasePage):
         entered_phone_value = self.driver.find_element(*HomePageLocators.PHONE_INPUT_FIELD)
         result = entered_phone_value.get_attribute("value")
         return result
-
-
-
 
     def close_auth_menu(self):
         """Метод для выхода(закрытия) из меню авторизации пользователя по SMS или паролю."""
@@ -131,8 +128,8 @@ class HomePage(BasePage):
     @staticmethod
     def two_factor_auth_menu_cancel(driver):
         """ Метод для проверки наличия на экране pop-up меню для подключения дву-факторной авторизации, перекрывающее
-        контент. При появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При отсутствии
-         меню в момент тестирования - тестовая функция выполняется в установленном режиме."""
+        контент. При появлении происходит нажатие кнопки 'Не сейчас' и возврат к экрану текущей страницы. При
+        отсутствии меню в момент тестирования - тестовая функция выполняется в установленном режиме."""
 
         try:
             time.sleep(1)
