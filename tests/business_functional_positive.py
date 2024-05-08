@@ -172,17 +172,17 @@ class TestTele2_Functional_BusinessPage_Auth_OFF:
             page.vip_numbers_catalog_btn_click()
             page.wait_page_loaded(wait_for_element=driver.find_element(*ToBusinessPageLocators.VIP_NUMBERS_RESULTS))
         with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению, верифицированный номер"):
-            available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
-            page.enter_vip_num_to_search(mobile_number=available_nums[3])
+            available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера в список
+            page.enter_vip_num_to_search(mobile_number=available_nums[1])
+            page.wait_page_loaded()
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
-            result = page.check_search_results().replace(' ', '').replace('-', '')  # удалим из строкового значения
+            result = page.check_search_results()  # удалим из строкового значения
             # найденного номера все лишние символы и знаки для осуществления точной проверки полученного результата
             page.make_screenshot(file_path=screenshots_folder + "\\nice_phone_search_RESULT.png")
             allure.attach(page.get_page_screenshot_PNG(), name="nice_phone_search_RESULT",
                           attachment_type=allure.attachment_type.PNG)
             assert result != '', "Ошибка! Номера нет в результатах поиска, пустая строка."
-            assert result.isnumeric()
-            assert available_nums[3].replace(' ', '').replace('-', '') == result
+            assert available_nums[1] == result
 
 
 @allure.epic("UI-Tele2_функциональное тестирование UI (позитивные тесты)")
@@ -341,6 +341,7 @@ class TestTele2_Functional_BusinessPage_Auth_ON:
         with allure.step("Шаг 4: В поле 'Поиск номера' ввести доступный к приобретению, верифицированный номер"):
             available_nums = page.check_and_save_current_nice_nums()  # спарсим доступные к покупке номера
             page.enter_vip_num_to_search(mobile_number=available_nums[3])
+            page.wait_page_loaded()
         with allure.step("Шаг 5: Выполнить проверку ожидаемого результата"):
             result = page.check_search_results().replace(' ', '').replace('-', '')  # удалим из строкового значения
             # найденного номера все лишние символы и знаки для осуществления точной проверки полученного результата
